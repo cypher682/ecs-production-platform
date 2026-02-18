@@ -1,0 +1,16 @@
+acm_certificate_arn = "arn:aws:acm:us-east-1:758620460011:certificate/3a9c9807-389b-46ba-aca0-35733af32651"
+alb_security_group_id = "sg-0373513dd33d30ddb"
+ecs_task_execution_role_arn = "arn:aws:iam::758620460011:role/ecs-prod-ecs-exec-20260216093558708700000002"
+ecs_task_role_arn = "arn:aws:iam::758620460011:role/ecs-prod-ecs-task-20260216093558708100000001"
+ecs_tasks_security_group_id = "sg-09a3082e31d282821"
+private_subnet_ids = [
+  "subnet-00c0c46774db560b2",
+  "subnet-0762d5bcc2722cf27",
+]
+public_subnet_ids = [
+  "subnet-0cb9b9135533a98e8",
+  "subnet-0f03d9302f0d6471e",
+]
+rds_security_group_id = "sg-07a5aae1f94e3e9e2"
+route53_zone_id = "Z0782794N21V0KLTQ5N0"
+vpc_id = "vpc-0d2a268b450bd99b0"
