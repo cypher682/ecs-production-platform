@@ -1,0 +1,105 @@
+{
+  "acm_certificate_arn": {
+    "sensitive": false,
+    "type": "string",
+    "value": "arn:aws:acm:us-east-1:758620460011:certificate/3a9c9807-389b-46ba-aca0-35733af32651"
+  },
+  "alb_dns_name": {
+    "sensitive": false,
+    "type": "string",
+    "value": "ecs-prod-alb-641417416.us-east-1.elb.amazonaws.com"
+  },
+  "alb_security_group_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": "sg-0373513dd33d30ddb"
+  },
+  "app_url": {
+    "sensitive": false,
+    "type": "string",
+    "value": "https://app.cipherpol.xyz"
+  },
+  "db_address": {
+    "sensitive": false,
+    "type": "string",
+    "value": "ecs-prod-db-cd31bf39.cm38c4g6mhtu.us-east-1.rds.amazonaws.com"
+  },
+  "db_endpoint": {
+    "sensitive": true,
+    "type": "string",
+    "value": "ecs-prod-db-cd31bf39.cm38c4g6mhtu.us-east-1.rds.amazonaws.com:5432"
+  },
+  "db_name": {
+    "sensitive": false,
+    "type": "string",
+    "value": "app_db"
+  },
+  "ecs_cluster_name": {
+    "sensitive": false,
+    "type": "string",
+    "value": "ecs-prod-cluster"
+  },
+  "ecs_service_name": {
+    "sensitive": false,
+    "type": "string",
+    "value": "ecs-prod-service"
+  },
+  "ecs_task_execution_role_arn": {
+    "sensitive": false,
+    "type": "string",
+    "value": "arn:aws:iam::758620460011:role/ecs-prod-ecs-exec-20260216093558708700000002"
+  },
+  "ecs_task_role_arn": {
+    "sensitive": false,
+    "type": "string",
+    "value": "arn:aws:iam::758620460011:role/ecs-prod-ecs-task-20260216093558708100000001"
+  },
+  "ecs_tasks_security_group_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": "sg-09a3082e31d282821"
+  },
+  "private_subnet_ids": {
+    "sensitive": false,
+    "type": [
+      "tuple",
+      [
+        "string",
+        "string"
+      ]
+    ],
+    "value": [
+      "subnet-00c0c46774db560b2",
+      "subnet-0762d5bcc2722cf27"
+    ]
+  },
+  "public_subnet_ids": {
+    "sensitive": false,
+    "type": [
+      "tuple",
+      [
+        "string",
+        "string"
+      ]
+    ],
+    "value": [
+      "subnet-0cb9b9135533a98e8",
+      "subnet-0f03d9302f0d6471e"
+    ]
+  },
+  "rds_security_group_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": "sg-07a5aae1f94e3e9e2"
+  },
+  "route53_zone_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": "Z0782794N21V0KLTQ5N0"
+  },
+  "vpc_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": "vpc-0d2a268b450bd99b0"
+  }
+}

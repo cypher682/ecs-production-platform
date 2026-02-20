@@ -1,0 +1,116 @@
+{
+    "taskDefinition": {
+        "taskDefinitionArn": "arn:aws:ecs:us-east-1:758620460011:task-definition/ecs-prod-flask-app-green:1",
+        "containerDefinitions": [
+            {
+                "name": "flask-app",
+                "image": "758620460011.dkr.ecr.us-east-1.amazonaws.com/ecs-prod/flask-app:green",
+                "cpu": 0,
+                "portMappings": [
+                    {
+                        "containerPort": 8000,
+                        "hostPort": 8000,
+                        "protocol": "tcp"
+                    }
+                ],
+                "essential": true,
+                "environment": [
+                    {
+                        "name": "DB_NAME",
+                        "value": "app_db"
+                    },
+                    {
+                        "name": "DB_HOST",
+                        "value": "ecs-prod-db-cd31bf39.cm38c4g6mhtu.us-east-1.rds.amazonaws.com"
+                    },
+                    {
+                        "name": "DB_PORT",
+                        "value": "5432"
+                    },
+                    {
+                        "name": "DB_PASSWORD_SSM_PARAM",
+                        "value": "/ecs-prod/db/password"
+                    },
+                    {
+                        "name": "DB_USER",
+                        "value": "app_user"
+                    }
+                ],
+                "mountPoints": [],
+                "volumesFrom": [],
+                "logConfiguration": {
+                    "logDriver": "awslogs",
+                    "options": {
+                        "awslogs-group": "/ecs/ecs-prod/flask-app",
+                        "awslogs-region": "us-east-1",
+                        "awslogs-stream-prefix": "ecs-green"
+                    }
+                },
+                "healthCheck": {
+                    "command": [
+                        "CMD-SHELL",
+                        "curl -f http://localhost:8000/health || exit 1"
+                    ],
+                    "interval": 30,
+                    "timeout": 5,
+                    "retries": 3,
+                    "startPeriod": 60
+                },
+                "systemControls": []
+            }
+        ],
+        "family": "ecs-prod-flask-app-green",
+        "taskRoleArn": "arn:aws:iam::758620460011:role/ecs-prod-ecs-task-20260216093558708100000001",
+        "executionRoleArn": "arn:aws:iam::758620460011:role/ecs-prod-ecs-exec-20260216093558708700000002",
+        "networkMode": "awsvpc",
+        "revision": 1,
+        "volumes": [],
+        "status": "ACTIVE",
+        "requiresAttributes": [
+            {
+                "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+            },
+            {
+                "name": "ecs.capability.execution-role-awslogs"
+            },
+            {
+                "name": "com.amazonaws.ecs.capability.ecr-auth"
+            },
+            {
+                "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+            },
+            {
+                "name": "com.amazonaws.ecs.capability.task-iam-role"
+            },
+            {
+                "name": "ecs.capability.container-health-check"
+            },
+            {
+                "name": "ecs.capability.execution-role-ecr-pull"
+            },
+            {
+                "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+            },
+            {
+                "name": "ecs.capability.task-eni"
+            },
+            {
+                "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
+            }
+        ],
+        "placementConstraints": [],
+        "compatibilities": [
+            "EC2",
+            "FARGATE",
+            "MANAGED_INSTANCES"
+        ],
+        "requiresCompatibilities": [
+            "FARGATE"
+        ],
+        "cpu": "256",
+        "memory": "512",
+        "registeredAt": "2026-02-19T14:38:36.270000+01:00",
+        "registeredBy": "arn:aws:iam::758620460011:user/awscli"
+    },
+    "tags": []
+}

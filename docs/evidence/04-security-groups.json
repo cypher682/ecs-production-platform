@@ -1,0 +1,187 @@
+{
+    "SecurityGroups": [
+        {
+            "GroupId": "sg-07a5aae1f94e3e9e2",
+            "IpPermissionsEgress": [],
+            "Tags": [
+                {
+                    "Key": "Environment",
+                    "Value": "prod"
+                },
+                {
+                    "Key": "Owner",
+                    "Value": "cypher682"
+                },
+                {
+                    "Key": "Project",
+                    "Value": "ecs-production-platform"
+                },
+                {
+                    "Key": "Name",
+                    "Value": "ecs-prod-rds-sg"
+                },
+                {
+                    "Key": "ManagedBy",
+                    "Value": "terraform"
+                }
+            ],
+            "VpcId": "vpc-0d2a268b450bd99b0",
+            "SecurityGroupArn": "arn:aws:ec2:us-east-1:758620460011:security-group/sg-07a5aae1f94e3e9e2",
+            "OwnerId": "758620460011",
+            "GroupName": "ecs-prod-rds-2026021609363536840000000a",
+            "Description": "Security group for RDS database",
+            "IpPermissions": [
+                {
+                    "IpProtocol": "tcp",
+                    "FromPort": 5432,
+                    "ToPort": 5432,
+                    "UserIdGroupPairs": [
+                        {
+                            "Description": "PostgreSQL from ECS tasks",
+                            "UserId": "758620460011",
+                            "GroupId": "sg-09a3082e31d282821"
+                        }
+                    ],
+                    "IpRanges": [],
+                    "Ipv6Ranges": [],
+                    "PrefixListIds": []
+                }
+            ]
+        },
+        {
+            "GroupId": "sg-09a3082e31d282821",
+            "IpPermissionsEgress": [
+                {
+                    "IpProtocol": "-1",
+                    "UserIdGroupPairs": [],
+                    "IpRanges": [
+                        {
+                            "Description": "All outbound traffic",
+                            "CidrIp": "0.0.0.0/0"
+                        }
+                    ],
+                    "Ipv6Ranges": [],
+                    "PrefixListIds": []
+                }
+            ],
+            "Tags": [
+                {
+                    "Key": "Environment",
+                    "Value": "prod"
+                },
+                {
+                    "Key": "Name",
+                    "Value": "ecs-prod-ecs-tasks-sg"
+                },
+                {
+                    "Key": "Project",
+                    "Value": "ecs-production-platform"
+                },
+                {
+                    "Key": "Owner",
+                    "Value": "cypher682"
+                },
+                {
+                    "Key": "ManagedBy",
+                    "Value": "terraform"
+                }
+            ],
+            "VpcId": "vpc-0d2a268b450bd99b0",
+            "SecurityGroupArn": "arn:aws:ec2:us-east-1:758620460011:security-group/sg-09a3082e31d282821",
+            "OwnerId": "758620460011",
+            "GroupName": "ecs-prod-ecs-tasks-20260216093628149700000009",
+            "Description": "Security group for ECS tasks",
+            "IpPermissions": [
+                {
+                    "IpProtocol": "tcp",
+                    "FromPort": 8000,
+                    "ToPort": 8000,
+                    "UserIdGroupPairs": [
+                        {
+                            "Description": "Traffic from ALB",
+                            "UserId": "758620460011",
+                            "GroupId": "sg-0373513dd33d30ddb"
+                        }
+                    ],
+                    "IpRanges": [],
+                    "Ipv6Ranges": [],
+                    "PrefixListIds": []
+                }
+            ]
+        },
+        {
+            "GroupId": "sg-0373513dd33d30ddb",
+            "IpPermissionsEgress": [
+                {
+                    "IpProtocol": "-1",
+                    "UserIdGroupPairs": [],
+                    "IpRanges": [
+                        {
+                            "Description": "All outbound traffic",
+                            "CidrIp": "0.0.0.0/0"
+                        }
+                    ],
+                    "Ipv6Ranges": [],
+                    "PrefixListIds": []
+                }
+            ],
+            "Tags": [
+                {
+                    "Key": "ManagedBy",
+                    "Value": "terraform"
+                },
+                {
+                    "Key": "Owner",
+                    "Value": "cypher682"
+                },
+                {
+                    "Key": "Project",
+                    "Value": "ecs-production-platform"
+                },
+                {
+                    "Key": "Name",
+                    "Value": "ecs-prod--alb-sg"
+                },
+                {
+                    "Key": "Environment",
+                    "Value": "prod"
+                }
+            ],
+            "VpcId": "vpc-0d2a268b450bd99b0",
+            "SecurityGroupArn": "arn:aws:ec2:us-east-1:758620460011:security-group/sg-0373513dd33d30ddb",
+            "OwnerId": "758620460011",
+            "GroupName": "ecs-prod--alb-20260216093616247200000007",
+            "Description": "Security group for Application Load balancer",
+            "IpPermissions": [
+                {
+                    "IpProtocol": "tcp",
+                    "FromPort": 80,
+                    "ToPort": 80,
+                    "UserIdGroupPairs": [],
+                    "IpRanges": [
+                        {
+                            "Description": "HTTP from internet (redirect to https)",
+                            "CidrIp": "0.0.0.0/0"
+                        }
+                    ],
+                    "Ipv6Ranges": [],
+                    "PrefixListIds": []
+                },
+                {
+                    "IpProtocol": "tcp",
+                    "FromPort": 443,
+                    "ToPort": 443,
+                    "UserIdGroupPairs": [],
+                    "IpRanges": [
+                        {
+                            "Description": "HTTPS from internet",
+                            "CidrIp": "0.0.0.0/0"
+                        }
+                    ],
+                    "Ipv6Ranges": [],
+                    "PrefixListIds": []
+                }
+            ]
+        }
+    ]
+}

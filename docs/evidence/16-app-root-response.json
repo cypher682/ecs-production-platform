@@ -1,0 +1,1 @@
+{"deployment":"GREEN DEPLOYMENT","endpoints":{"db_check":"/db-check","health":"/health","items":"/items (GET, POST)"},"features":["Blue-Green Deployment Tested","Zero Downtime Switching","Automatic Rollback on Failure"],"message":"ECS Production Platform API","version":"2.0.0"}

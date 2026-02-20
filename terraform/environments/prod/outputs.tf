@@ -47,3 +47,37 @@ output "route53_zone_id" {
   description = "Route 53 hosted zone ID"
   value       = data.aws_route53_zone.main.zone_id
 }
+output "alb_dns_name" {
+  description = "ALB DNS name"
+  value       = module.alb.alb_dns_name
+}
+
+output "app_url" {
+  description = "Application URL"
+  value       = "https://app.${var.domain_name}"
+}
+
+output "ecs_cluster_name" {
+  description = "ECS cluster name"
+  value       = module.ecs.cluster_name
+}
+
+output "ecs_service_name" {
+  description = "ECS service name"
+  value       = module.ecs.service_name
+}
+output "db_endpoint" {
+  description = "RDS endpoint"
+  value       = module.rds.db_endpoint
+  sensitive   = true
+}
+
+output "db_address" {
+  description = "RDS hostname"
+  value       = module.rds.db_address
+}
+
+output "db_name" {
+  description = "Database name"
+  value       = module.rds.db_name
+}

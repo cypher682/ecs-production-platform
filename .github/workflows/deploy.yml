@@ -1,0 +1,135 @@
+name: Deploy to ECS (Green)
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "app/**"
+      - ".github/workflows/deploy.yml"
+  workflow_dispatch:
+
+env:
+  AWS_REGION: us-east-1
+  ECR_REPOSITORY: ecs-prod/flask-app
+  ECS_CLUSTER: ecs-prod-cluster
+  ECS_SERVICE_GREEN: ecs-prod-service-green
+  TASK_DEFINITION_GREEN: ecs-prod-flask-app-green
+  CONTAINER_NAME: flask-app
+
+jobs:
+  deploy:
+    name: Build and Deploy to Green
+    runs-on: ubuntu-latest
+
+    # Uncomment when IAM OIDC role is created (see docs/05_CICD_DESIGN.md)
+    # permissions:
+    #   id-token: write
+    #   contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # -------------------------------------------------------
+      # OIDC Authentication — uncomment after IAM setup
+      # See: docs/05_CICD_DESIGN.md for setup instructions
+      # -------------------------------------------------------
+      # - name: Configure AWS credentials (OIDC)
+      #   uses: aws-actions/configure-aws-credentials@v4
+      #   with:
+      #     role-to-assume: arn:aws:iam::758620460011:role/ecs-prod-github-actions-deploy
+      #     aws-region: ${{ env.AWS_REGION }}
+
+      - name: Placeholder — OIDC not yet configured
+        run: |
+          echo "AWS authentication not configured."
+          echo "To enable this workflow:"
+          echo "  1. Create IAM OIDC provider (see docs/05_CICD_DESIGN.md)"
+          echo "  2. Create deployment IAM role"
+          echo "  3. Uncomment the configure-aws-credentials step above"
+          echo "  4. Remove this step"
+          exit 1
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build Docker image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          cd app
+          docker build \
+            --platform linux/amd64 \
+            -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \
+            .
+          docker tag \
+            $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \
+            $ECR_REGISTRY/$ECR_REPOSITORY:latest
+          echo "IMAGE_URI=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_ENV
+
+      - name: Push image to ECR
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+          echo "Pushed image: $IMAGE_URI"
+
+      - name: Download current green task definition
+        run: |
+          aws ecs describe-task-definition \
+            --task-definition ${{ env.TASK_DEFINITION_GREEN }} \
+            --query taskDefinition \
+            > task-definition.json
+          echo "Task definition downloaded:"
+          jq '{family,revision,cpu,memory}' task-definition.json
+
+      - name: Render new task definition with updated image
+        id: task-def
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: task-definition.json
+          container-name: ${{ env.CONTAINER_NAME }}
+          image: ${{ env.IMAGE_URI }}
+
+      - name: Deploy to green ECS service
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          service: ${{ env.ECS_SERVICE_GREEN }}
+          cluster: ${{ env.ECS_CLUSTER }}
+          wait-for-service-stability: true
+
+      - name: Deployment summary
+        run: |
+          echo "Green deployment complete."
+          echo ""
+          echo "Image: $IMAGE_URI"
+          echo "Commit: ${{ github.sha }}"
+          echo "Triggered by: ${{ github.actor }}"
+          echo ""
+          echo "Manual steps required to complete the release:"
+          echo ""
+          echo "  1. Verify green tasks are healthy:"
+          echo "     curl https://app.cipherpol.xyz/health"
+          echo ""
+          echo "  2. Switch ALB traffic to green (100%):"
+          echo "     See docs/runbooks/rollback-procedure.md"
+          echo ""
+          echo "  3. Monitor for 15 minutes."
+          echo ""
+          echo "  4. Scale blue to 0:"
+          echo "     aws ecs update-service --cluster ecs-prod-cluster"
+          echo "       --service ecs-prod-service --desired-count 0"
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "Deployment to green failed."
+          echo "Blue service is unaffected — no user impact."
+          echo "Check ECS service events and CloudWatch logs:"
+          echo "  /ecs/ecs-prod/flask-app"

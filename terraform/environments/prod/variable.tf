@@ -31,3 +31,30 @@ variable "availability_zones" {
     default = [ "us-east-1a", "us-east-1b" ]
   
 }
+variable "container_image" {
+  description = "Docker image for ECS task"
+  type        = string
+  default     = "758620460011.dkr.ecr.us-east-1.amazonaws.com/ecs-prod/flask-app:latest"
+}
+variable "db_name" {
+  description = "Database name"
+  type        = string
+  default     = "app_db"
+}
+
+variable "db_username" {
+  description = "Database username"
+  type        = string
+  default     = "app_user"
+}
+
+variable "db_password" {
+  description = "Database password (from SSM)"
+  type        = string
+  sensitive   = true
+}
+variable "container_image_green" {
+  description = "Docker image for green deployment"
+  type        = string
+  default     = "758620460011.dkr.ecr.us-east-1.amazonaws.com/ecs-prod/flask-app:green"
+}

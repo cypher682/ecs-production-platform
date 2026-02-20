@@ -1,0 +1,1239 @@
+{
+    "services": [
+        {
+            "serviceArn": "arn:aws:ecs:us-east-1:758620460011:service/ecs-prod-cluster/ecs-prod-service",
+            "serviceName": "ecs-prod-service",
+            "clusterArn": "arn:aws:ecs:us-east-1:758620460011:cluster/ecs-prod-cluster",
+            "loadBalancers": [
+                {
+                    "targetGroupArn": "arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-blue/685ae4abdbf9d56a",
+                    "containerName": "flask-app",
+                    "containerPort": 8000
+                }
+            ],
+            "serviceRegistries": [],
+            "status": "ACTIVE",
+            "desiredCount": 2,
+            "runningCount": 2,
+            "pendingCount": 0,
+            "launchType": "FARGATE",
+            "platformVersion": "LATEST",
+            "platformFamily": "Linux",
+            "taskDefinition": "arn:aws:ecs:us-east-1:758620460011:task-definition/ecs-prod-flask-app:2",
+            "deploymentConfiguration": {
+                "deploymentCircuitBreaker": {
+                    "enable": false,
+                    "rollback": false
+                },
+                "maximumPercent": 200,
+                "minimumHealthyPercent": 100,
+                "strategy": "ROLLING",
+                "bakeTimeInMinutes": 0
+            },
+            "deployments": [
+                {
+                    "id": "ecs-svc/6589557530957282975",
+                    "status": "PRIMARY",
+                    "taskDefinition": "arn:aws:ecs:us-east-1:758620460011:task-definition/ecs-prod-flask-app:2",
+                    "desiredCount": 2,
+                    "pendingCount": 0,
+                    "runningCount": 2,
+                    "failedTasks": 13,
+                    "createdAt": "2026-02-19T15:44:03.385000+01:00",
+                    "updatedAt": "2026-02-19T16:36:26.085000+01:00",
+                    "launchType": "FARGATE",
+                    "platformVersion": "1.4.0",
+                    "platformFamily": "Linux",
+                    "networkConfiguration": {
+                        "awsvpcConfiguration": {
+                            "subnets": [
+                                "subnet-0f03d9302f0d6471e",
+                                "subnet-0cb9b9135533a98e8"
+                            ],
+                            "securityGroups": [
+                                "sg-09a3082e31d282821"
+                            ],
+                            "assignPublicIp": "ENABLED"
+                        }
+                    },
+                    "rolloutState": "IN_PROGRESS",
+                    "rolloutStateReason": "ECS deployment ecs-svc/6589557530957282975 in progress."
+                },
+                {
+                    "id": "ecs-svc/7387014955115779478",
+                    "status": "ACTIVE",
+                    "taskDefinition": "arn:aws:ecs:us-east-1:758620460011:task-definition/ecs-prod-flask-app:2",
+                    "desiredCount": 1,
+                    "pendingCount": 0,
+                    "runningCount": 0,
+                    "failedTasks": 17,
+                    "createdAt": "2026-02-19T15:02:15.675000+01:00",
+                    "updatedAt": "2026-02-19T16:40:35.662000+01:00",
+                    "launchType": "FARGATE",
+                    "platformVersion": "1.4.0",
+                    "platformFamily": "Linux",
+                    "networkConfiguration": {
+                        "awsvpcConfiguration": {
+                            "subnets": [
+                                "subnet-0f03d9302f0d6471e",
+                                "subnet-0cb9b9135533a98e8"
+                            ],
+                            "securityGroups": [
+                                "sg-09a3082e31d282821"
+                            ],
+                            "assignPublicIp": "ENABLED"
+                        }
+                    },
+                    "rolloutState": "IN_PROGRESS",
+                    "rolloutStateReason": "ECS deployment ecs-svc/7387014955115779478 in progress."
+                }
+            ],
+            "roleArn": "arn:aws:iam::758620460011:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+            "events": [
+                {
+                    "id": "fe8aaab5-b5e4-4c43-a634-3db222608186",
+                    "createdAt": "2026-02-19T16:40:45.876000+01:00",
+                    "message": "(service ecs-prod-service, taskSet ecs-svc/7387014955115779478) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "be10c46c-f873-458e-84db-b58ea2ef9840",
+                    "createdAt": "2026-02-19T16:40:45.870000+01:00",
+                    "message": "(service ecs-prod-service) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-blue/685ae4abdbf9d56a)"
+                },
+                {
+                    "id": "13f8531c-149f-412f-9518-0b9f112961b6",
+                    "createdAt": "2026-02-19T16:40:35.670000+01:00",
+                    "message": "(service ecs-prod-service) has stopped 1 running tasks: (task 782480b3ac0f4aa08c6559041003ce58)."
+                },
+                {
+                    "id": "6b2a9d9b-063d-4b2e-a771-9b9bb8f571ef",
+                    "createdAt": "2026-02-19T16:40:35.662000+01:00",
+                    "message": "(service ecs-prod-service) (task 782480b3ac0f4aa08c6559041003ce58) failed container health checks."
+                },
+                {
+                    "id": "f33fe0d2-e3c1-461f-9aa4-00bcbb333a75",
+                    "createdAt": "2026-02-19T16:39:54.441000+01:00",
+                    "message": "(service ecs-prod-service, taskSet ecs-svc/6589557530957282975) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "2c2b5377-d96f-4277-97bd-96a1a6502768",
+                    "createdAt": "2026-02-19T16:39:54.436000+01:00",
+                    "message": "(service ecs-prod-service) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-blue/685ae4abdbf9d56a)"
+                },
+                {
+                    "id": "a06dfb0c-aca6-462f-af68-8a75d5a839a7",
+                    "createdAt": "2026-02-19T16:39:43.172000+01:00",
+                    "message": "(service ecs-prod-service) has stopped 1 running tasks: (task 3ec531651d554af993e8eebf0d23bb66)."
+                },
+                {
+                    "id": "cf6fb559-bb0c-4b58-96a3-36040de5f92f",
+                    "createdAt": "2026-02-19T16:39:43.171000+01:00",
+                    "message": "(service ecs-prod-service) (task 3ec531651d554af993e8eebf0d23bb66) failed container health checks."
+                },
+                {
+                    "id": "233b2051-bb86-44a1-a577-099243027712",
+                    "createdAt": "2026-02-19T16:38:41.112000+01:00",
+                    "message": "(service ecs-prod-service) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-blue/685ae4abdbf9d56a)"
+                },
+                {
+                    "id": "b85195a9-ea49-436e-98cf-9996c5cfcd29",
+                    "createdAt": "2026-02-19T16:38:11.292000+01:00",
+                    "message": "(service ecs-prod-service) has started 1 tasks: (task 782480b3ac0f4aa08c6559041003ce58)."
+                },
+                {
+                    "id": "4a66373f-2c63-4f5e-a09b-bdb386cd311d",
+                    "createdAt": "2026-02-19T16:37:41.093000+01:00",
+                    "message": "(service ecs-prod-service) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-blue/685ae4abdbf9d56a)"
+                },
+                {
+                    "id": "0a6110f6-f18d-4eff-a9ff-c20470037bf2",
+                    "createdAt": "2026-02-19T16:37:20.574000+01:00",
+                    "message": "(service ecs-prod-service) has started 1 tasks: (task 996f5ff54b60499aac345edf6dd41af5). Amazon ECS replaced 1 tasks due to an unhealthy status."
+                },
+                {
+                    "id": "6cc24b63-326d-4525-bbbf-ddfa149def87",
+                    "createdAt": "2026-02-19T16:36:49.150000+01:00",
+                    "message": "(service ecs-prod-service, taskSet ecs-svc/7387014955115779478) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "d4fb4f81-2986-4f39-801c-0fde5986f093",
+                    "createdAt": "2026-02-19T16:36:49.144000+01:00",
+                    "message": "(service ecs-prod-service) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-blue/685ae4abdbf9d56a)"
+                },
+                {
+                    "id": "bb798a27-01f3-4999-bc0d-1c191dcdee51",
+                    "createdAt": "2026-02-19T16:36:38.883000+01:00",
+                    "message": "(service ecs-prod-service) has stopped 1 running tasks: (task 6497e4adf40f4048896de7cbcad0a57a)."
+                },
+                {
+                    "id": "77e15ab5-cbdb-4707-9958-6b1e8581729b",
+                    "createdAt": "2026-02-19T16:36:38.876000+01:00",
+                    "message": "(service ecs-prod-service) (task 6497e4adf40f4048896de7cbcad0a57a) failed container health checks."
+                },
+                {
+                    "id": "b28e6674-e5ce-479f-9213-dfe7261b7fc9",
+                    "createdAt": "2026-02-19T16:36:07.976000+01:00",
+                    "message": "(service ecs-prod-service, taskSet ecs-svc/6589557530957282975) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "5b8b875b-e66a-46ac-8c52-78a18d778c0f",
+                    "createdAt": "2026-02-19T16:36:07.971000+01:00",
+                    "message": "(service ecs-prod-service) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-blue/685ae4abdbf9d56a)"
+                },
+                {
+                    "id": "08e9881b-f843-4357-beae-ecf57dce7afd",
+                    "createdAt": "2026-02-19T16:35:57.162000+01:00",
+                    "message": "(service ecs-prod-service) has stopped 1 running tasks: (task 9264dffb0c7741ad817385a5c5c5b514)."
+                },
+                {
+                    "id": "7f19b043-8b46-4d8d-9192-0a778dba73dc",
+                    "createdAt": "2026-02-19T16:35:57.161000+01:00",
+                    "message": "(service ecs-prod-service) (task 9264dffb0c7741ad817385a5c5c5b514) failed container health checks."
+                },
+                {
+                    "id": "e90e8fc2-5b0a-4fdf-a9a1-896e0706fa1d",
+                    "createdAt": "2026-02-19T16:34:35.644000+01:00",
+                    "message": "(service ecs-prod-service) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-blue/685ae4abdbf9d56a)"
+                },
+                {
+                    "id": "2388fe67-5010-4484-a700-417f0e93aa98",
+                    "createdAt": "2026-02-19T16:34:14.518000+01:00",
+                    "message": "(service ecs-prod-service) has started 1 tasks: (task 6497e4adf40f4048896de7cbcad0a57a)."
+                },
+                {
+                    "id": "7126911b-3664-4c44-91ff-3f3e7a60d054",
+                    "createdAt": "2026-02-19T16:33:54.448000+01:00",
+                    "message": "(service ecs-prod-service) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-blue/685ae4abdbf9d56a)"
+                },
+                {
+                    "id": "e82f33b2-9478-4ea0-886e-2bbb0c425628",
+                    "createdAt": "2026-02-19T16:33:34.186000+01:00",
+                    "message": "(service ecs-prod-service) has started 1 tasks: (task 9264dffb0c7741ad817385a5c5c5b514). Amazon ECS replaced 1 tasks due to an unhealthy status."
+                },
+                {
+                    "id": "eb58e77c-9aa2-4d07-88ae-022d62bcff9f",
+                    "createdAt": "2026-02-19T16:32:52.319000+01:00",
+                    "message": "(service ecs-prod-service, taskSet ecs-svc/7387014955115779478) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "37854dad-68ee-489b-91fb-6e579fb9f9af",
+                    "createdAt": "2026-02-19T16:32:52.313000+01:00",
+                    "message": "(service ecs-prod-service) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-blue/685ae4abdbf9d56a)"
+                },
+                {
+                    "id": "4dda8bcb-ae63-43af-9e68-f2aebab80c79",
+                    "createdAt": "2026-02-19T16:32:41.849000+01:00",
+                    "message": "(service ecs-prod-service) has stopped 1 running tasks: (task 08888cfb3af34dbc9b43b1fab7fd1c22)."
+                },
+                {
+                    "id": "c2b7d545-41eb-480f-a2ff-171aa3aaae3c",
+                    "createdAt": "2026-02-19T16:32:41.841000+01:00",
+                    "message": "(service ecs-prod-service) (task 08888cfb3af34dbc9b43b1fab7fd1c22) failed container health checks."
+                },
+                {
+                    "id": "3a1e225d-4605-4267-b91a-720cc4284b1f",
+                    "createdAt": "2026-02-19T16:32:11.162000+01:00",
+                    "message": "(service ecs-prod-service, taskSet ecs-svc/6589557530957282975) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "ddd38c14-13c7-4989-990a-086cb2bd20bc",
+                    "createdAt": "2026-02-19T16:32:11.157000+01:00",
+                    "message": "(service ecs-prod-service) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-blue/685ae4abdbf9d56a)"
+                },
+                {
+                    "id": "2098e4a2-b2fa-48f0-9073-cb96cdf6bae2",
+                    "createdAt": "2026-02-19T16:32:00.852000+01:00",
+                    "message": "(service ecs-prod-service) has stopped 1 running tasks: (task ea40d6bdcdff42a3b4025a063ba6fb5e)."
+                },
+                {
+                    "id": "008dd11b-c6cf-4045-91ab-64e20a486b05",
+                    "createdAt": "2026-02-19T16:32:00.851000+01:00",
+                    "message": "(service ecs-prod-service) (task ea40d6bdcdff42a3b4025a063ba6fb5e) failed container health checks."
+                },
+                {
+                    "id": "d1161bf7-7f39-4444-9333-224ca17df4a5",
+                    "createdAt": "2026-02-19T16:30:49.254000+01:00",
+                    "message": "(service ecs-prod-service) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-blue/685ae4abdbf9d56a)"
+                },
+                {
+                    "id": "ad063cc1-2c8e-43fd-b6bb-4cf5ff20cfb8",
+                    "createdAt": "2026-02-19T16:30:18.089000+01:00",
+                    "message": "(service ecs-prod-service) has started 1 tasks: (task 08888cfb3af34dbc9b43b1fab7fd1c22)."
+                },
+                {
+                    "id": "cf566db4-f332-418d-bd1a-7898efd1a4a9",
+                    "createdAt": "2026-02-19T16:30:08.145000+01:00",
+                    "message": "(service ecs-prod-service) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-blue/685ae4abdbf9d56a)"
+                },
+                {
+                    "id": "3a82075e-6b16-45ea-be0b-a6eea57c8771",
+                    "createdAt": "2026-02-19T16:29:37.411000+01:00",
+                    "message": "(service ecs-prod-service) has started 1 tasks: (task ea40d6bdcdff42a3b4025a063ba6fb5e). Amazon ECS replaced 1 tasks due to an unhealthy status."
+                },
+                {
+                    "id": "d68b5457-10cb-405b-8386-7931fb3f6808",
+                    "createdAt": "2026-02-19T16:28:55.578000+01:00",
+                    "message": "(service ecs-prod-service, taskSet ecs-svc/7387014955115779478) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "eba80123-990b-4826-893f-d5eae04bfafb",
+                    "createdAt": "2026-02-19T16:28:55.570000+01:00",
+                    "message": "(service ecs-prod-service) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-blue/685ae4abdbf9d56a)"
+                },
+                {
+                    "id": "93eacecd-6a73-4b99-9f05-30566cd78778",
+                    "createdAt": "2026-02-19T16:28:44.532000+01:00",
+                    "message": "(service ecs-prod-service) has stopped 1 running tasks: (task 624c758daf7545148ee0323fb70de177)."
+                },
+                {
+                    "id": "b4a991e0-9575-4198-b561-aa7d7cff46da",
+                    "createdAt": "2026-02-19T16:28:44.523000+01:00",
+                    "message": "(service ecs-prod-service) (task 624c758daf7545148ee0323fb70de177) failed container health checks."
+                },
+                {
+                    "id": "4b7e7543-9aed-423d-a4b1-9fc9d30098e5",
+                    "createdAt": "2026-02-19T16:28:04.115000+01:00",
+                    "message": "(service ecs-prod-service, taskSet ecs-svc/6589557530957282975) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "308bed43-b921-4a29-9e0d-0f753591ca00",
+                    "createdAt": "2026-02-19T16:28:04.110000+01:00",
+                    "message": "(service ecs-prod-service) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-blue/685ae4abdbf9d56a)"
+                },
+                {
+                    "id": "881b4ad1-da35-45db-be5b-701ebb8b8fb3",
+                    "createdAt": "2026-02-19T16:27:53.776000+01:00",
+                    "message": "(service ecs-prod-service) has stopped 1 running tasks: (task 0551565709e4472493873c3b76a1e0a6)."
+                },
+                {
+                    "id": "1337fc4f-89b8-422d-a890-7663e69a82ce",
+                    "createdAt": "2026-02-19T16:27:53.775000+01:00",
+                    "message": "(service ecs-prod-service) (task 0551565709e4472493873c3b76a1e0a6) failed container health checks."
+                },
+                {
+                    "id": "e607ed7a-2018-4753-8749-7e7e8394fe96",
+                    "createdAt": "2026-02-19T16:26:52.511000+01:00",
+                    "message": "(service ecs-prod-service) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-blue/685ae4abdbf9d56a)"
+                },
+                {
+                    "id": "7022509a-a8cb-4780-8b90-825b8eb09e81",
+                    "createdAt": "2026-02-19T16:26:21.658000+01:00",
+                    "message": "(service ecs-prod-service) has started 1 tasks: (task 624c758daf7545148ee0323fb70de177)."
+                },
+                {
+                    "id": "30995642-4964-40d2-9d6c-ba9cfb8c1a56",
+                    "createdAt": "2026-02-19T16:25:59.444000+01:00",
+                    "message": "(service ecs-prod-service) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-blue/685ae4abdbf9d56a)"
+                },
+                {
+                    "id": "b33125dc-72a2-4124-bb6d-678cfc3ba3b5",
+                    "createdAt": "2026-02-19T16:25:30.210000+01:00",
+                    "message": "(service ecs-prod-service) has started 1 tasks: (task 3ec531651d554af993e8eebf0d23bb66). Amazon ECS replaced 1 tasks due to an unhealthy status."
+                },
+                {
+                    "id": "699d1dcb-a08d-45d8-8ef9-ad1e5ed429b9",
+                    "createdAt": "2026-02-19T16:24:58.764000+01:00",
+                    "message": "(service ecs-prod-service, taskSet ecs-svc/7387014955115779478) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "20f69a3a-f333-4586-ba72-fb05f288778b",
+                    "createdAt": "2026-02-19T16:24:58.759000+01:00",
+                    "message": "(service ecs-prod-service) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-blue/685ae4abdbf9d56a)"
+                },
+                {
+                    "id": "2979a528-1182-4628-91ed-15ef90fac38f",
+                    "createdAt": "2026-02-19T16:24:48.258000+01:00",
+                    "message": "(service ecs-prod-service) has stopped 1 running tasks: (task e5dd8184299b44ad8f27eaa8165fb015)."
+                },
+                {
+                    "id": "c5879025-e1b5-4ec9-aa5a-e66772127f51",
+                    "createdAt": "2026-02-19T16:24:48.251000+01:00",
+                    "message": "(service ecs-prod-service) (task e5dd8184299b44ad8f27eaa8165fb015) failed container health checks."
+                },
+                {
+                    "id": "461bd985-544e-435b-9339-16309d4b2bfb",
+                    "createdAt": "2026-02-19T16:24:07.242000+01:00",
+                    "message": "(service ecs-prod-service, taskSet ecs-svc/6589557530957282975) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "f5f07d03-a646-4492-8cbf-96fcc077ab48",
+                    "createdAt": "2026-02-19T16:24:07.237000+01:00",
+                    "message": "(service ecs-prod-service) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-blue/685ae4abdbf9d56a)"
+                },
+                {
+                    "id": "531b6ee3-7c93-4fee-97f2-1e91dcbde127",
+                    "createdAt": "2026-02-19T16:23:56.938000+01:00",
+                    "message": "(service ecs-prod-service) has stopped 1 running tasks: (task bacac1f5b3ea4f3fa9d6c301ff0389cb)."
+                },
+                {
+                    "id": "34d2ae25-a153-490f-ae9c-c3b7aa538cbc",
+                    "createdAt": "2026-02-19T16:23:56.937000+01:00",
+                    "message": "(service ecs-prod-service) (task bacac1f5b3ea4f3fa9d6c301ff0389cb) failed container health checks."
+                },
+                {
+                    "id": "82976a6b-ff8f-4188-92b5-c71aa769df8d",
+                    "createdAt": "2026-02-19T16:22:45.107000+01:00",
+                    "message": "(service ecs-prod-service) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-blue/685ae4abdbf9d56a)"
+                },
+                {
+                    "id": "30be65c5-af10-45be-b3b9-edbd47f79a30",
+                    "createdAt": "2026-02-19T16:22:14.770000+01:00",
+                    "message": "(service ecs-prod-service) has started 1 tasks: (task e5dd8184299b44ad8f27eaa8165fb015)."
+                },
+                {
+                    "id": "fd0d55df-f72d-4fa5-9a1d-7adc2e3273b7",
+                    "createdAt": "2026-02-19T16:21:53.618000+01:00",
+                    "message": "(service ecs-prod-service) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-blue/685ae4abdbf9d56a)"
+                },
+                {
+                    "id": "57f59028-45ec-4c85-b9c8-3f3fc51d3c4f",
+                    "createdAt": "2026-02-19T16:21:32.188000+01:00",
+                    "message": "(service ecs-prod-service) has started 1 tasks: (task 6c0c2d189711464c8cd397d4e3765089). Amazon ECS replaced 1 tasks due to an unhealthy status."
+                },
+                {
+                    "id": "be3b5428-b964-4696-a3ab-708442f124da",
+                    "createdAt": "2026-02-19T16:20:50.161000+01:00",
+                    "message": "(service ecs-prod-service, taskSet ecs-svc/7387014955115779478) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "9bce8244-d285-4c17-a150-921228a9471d",
+                    "createdAt": "2026-02-19T16:20:50.157000+01:00",
+                    "message": "(service ecs-prod-service) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-blue/685ae4abdbf9d56a)"
+                },
+                {
+                    "id": "88da3c77-011e-42f0-820c-5a5f1bfb08e7",
+                    "createdAt": "2026-02-19T16:20:41.272000+01:00",
+                    "message": "(service ecs-prod-service) has stopped 1 running tasks: (task a593e193d18644bdb365d6521312f1f1)."
+                },
+                {
+                    "id": "efd37b14-5f1c-4dc0-9636-1626992d7d44",
+                    "createdAt": "2026-02-19T16:20:41.266000+01:00",
+                    "message": "(service ecs-prod-service) (task a593e193d18644bdb365d6521312f1f1) failed container health checks."
+                },
+                {
+                    "id": "35322910-09d8-4ead-9685-f2248a963c6a",
+                    "createdAt": "2026-02-19T16:20:09.299000+01:00",
+                    "message": "(service ecs-prod-service, taskSet ecs-svc/6589557530957282975) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "afc9ab9c-49ad-467b-ab47-c23b4f7d93fa",
+                    "createdAt": "2026-02-19T16:20:09.294000+01:00",
+                    "message": "(service ecs-prod-service) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-blue/685ae4abdbf9d56a)"
+                },
+                {
+                    "id": "e1a18f43-a5cb-40e1-bbb7-0e0f00f5f8f6",
+                    "createdAt": "2026-02-19T16:20:00.157000+01:00",
+                    "message": "(service ecs-prod-service) has stopped 1 running tasks: (task 80af8c4411cc449c8d2d596ca017d927)."
+                },
+                {
+                    "id": "56010edc-67c0-47a9-bec3-9c45fd96b6d9",
+                    "createdAt": "2026-02-19T16:20:00.156000+01:00",
+                    "message": "(service ecs-prod-service) (task 80af8c4411cc449c8d2d596ca017d927) failed container health checks."
+                },
+                {
+                    "id": "4bdf54ec-e945-442e-9c3a-33920c3869e9",
+                    "createdAt": "2026-02-19T16:18:37.942000+01:00",
+                    "message": "(service ecs-prod-service) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-blue/685ae4abdbf9d56a)"
+                },
+                {
+                    "id": "126acb4f-7ca7-41e3-b0d6-b35e1037b173",
+                    "createdAt": "2026-02-19T16:18:07.514000+01:00",
+                    "message": "(service ecs-prod-service) has started 1 tasks: (task a593e193d18644bdb365d6521312f1f1)."
+                },
+                {
+                    "id": "4ae6bb74-8d62-4fc0-88f8-d5f72921e597",
+                    "createdAt": "2026-02-19T16:17:56.687000+01:00",
+                    "message": "(service ecs-prod-service) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-blue/685ae4abdbf9d56a)"
+                },
+                {
+                    "id": "f7396552-9dfe-4800-8d01-54d9981d4e05",
+                    "createdAt": "2026-02-19T16:17:16.101000+01:00",
+                    "message": "(service ecs-prod-service) has started 1 tasks: (task 80af8c4411cc449c8d2d596ca017d927). Amazon ECS replaced 1 tasks due to an unhealthy status."
+                },
+                {
+                    "id": "74ceeb73-72e3-4f9e-ac7d-96763b1c4467",
+                    "createdAt": "2026-02-19T16:16:34.252000+01:00",
+                    "message": "(service ecs-prod-service, taskSet ecs-svc/7387014955115779478) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "8476ea96-b680-4c21-b53f-575b2651551f",
+                    "createdAt": "2026-02-19T16:16:34.246000+01:00",
+                    "message": "(service ecs-prod-service) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-blue/685ae4abdbf9d56a)"
+                },
+                {
+                    "id": "6676a15d-b02b-423a-b15e-893850ff8d94",
+                    "createdAt": "2026-02-19T16:16:23.951000+01:00",
+                    "message": "(service ecs-prod-service) has stopped 1 running tasks: (task f0b1c5fcbee64835b7ef12c821aef2d3)."
+                },
+                {
+                    "id": "74fb5072-1d6b-44ff-b8e4-781b2887a061",
+                    "createdAt": "2026-02-19T16:16:23.945000+01:00",
+                    "message": "(service ecs-prod-service) (task f0b1c5fcbee64835b7ef12c821aef2d3) failed container health checks."
+                },
+                {
+                    "id": "2138e00d-149c-4454-8e04-b6a115be69d9",
+                    "createdAt": "2026-02-19T16:16:03.271000+01:00",
+                    "message": "(service ecs-prod-service, taskSet ecs-svc/6589557530957282975) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "79e0a885-b296-47c3-b21c-8264ff7ae124",
+                    "createdAt": "2026-02-19T16:16:03.264000+01:00",
+                    "message": "(service ecs-prod-service) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-blue/685ae4abdbf9d56a)"
+                },
+                {
+                    "id": "fec0b206-cfcb-48ea-b6a6-14606ed2493e",
+                    "createdAt": "2026-02-19T16:15:51.815000+01:00",
+                    "message": "(service ecs-prod-service) has stopped 1 running tasks: (task 7e04dfc3588f44c0bd36e1ade720e7f1)."
+                },
+                {
+                    "id": "11e31e87-3673-4fce-9e56-b21323ed0624",
+                    "createdAt": "2026-02-19T16:15:51.814000+01:00",
+                    "message": "(service ecs-prod-service) (task 7e04dfc3588f44c0bd36e1ade720e7f1) failed container health checks."
+                },
+                {
+                    "id": "067748cf-4888-4410-a8ec-3e8dd1d0d280",
+                    "createdAt": "2026-02-19T16:14:31.062000+01:00",
+                    "message": "(service ecs-prod-service) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-blue/685ae4abdbf9d56a)"
+                },
+                {
+                    "id": "92ab4d64-d362-4b4c-9b47-5539f9e64160",
+                    "createdAt": "2026-02-19T16:14:00.399000+01:00",
+                    "message": "(service ecs-prod-service) has started 1 tasks: (task f0b1c5fcbee64835b7ef12c821aef2d3)."
+                },
+                {
+                    "id": "77eb0e6b-60bf-41a8-ba09-46057f426075",
+                    "createdAt": "2026-02-19T16:13:49.860000+01:00",
+                    "message": "(service ecs-prod-service) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-blue/685ae4abdbf9d56a)"
+                },
+                {
+                    "id": "487442a0-b875-461e-b3d5-8e475339d95d",
+                    "createdAt": "2026-02-19T16:13:18.864000+01:00",
+                    "message": "(service ecs-prod-service) has started 1 tasks: (task 0551565709e4472493873c3b76a1e0a6). Amazon ECS replaced 1 tasks due to an unhealthy status."
+                },
+                {
+                    "id": "da4280f8-680e-4855-8428-a15f2c276ef6",
+                    "createdAt": "2026-02-19T16:12:37.444000+01:00",
+                    "message": "(service ecs-prod-service, taskSet ecs-svc/7387014955115779478) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "dc12386b-83b8-4395-9351-4b6d1198b0e5",
+                    "createdAt": "2026-02-19T16:12:37.439000+01:00",
+                    "message": "(service ecs-prod-service) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-blue/685ae4abdbf9d56a)"
+                },
+                {
+                    "id": "7249b9a7-e44e-41a4-8cc7-2e6c5b5f4fe5",
+                    "createdAt": "2026-02-19T16:12:27.155000+01:00",
+                    "message": "(service ecs-prod-service) has stopped 1 running tasks: (task c315ec32895c4b9f888852e2c169e484)."
+                },
+                {
+                    "id": "0f39c9f1-1341-4923-bd0b-30af94b4f4a3",
+                    "createdAt": "2026-02-19T16:12:27.149000+01:00",
+                    "message": "(service ecs-prod-service) (task c315ec32895c4b9f888852e2c169e484) failed container health checks."
+                },
+                {
+                    "id": "fde48285-f0f6-4a2d-a2c2-d3f7ecaad46c",
+                    "createdAt": "2026-02-19T16:12:06.544000+01:00",
+                    "message": "(service ecs-prod-service, taskSet ecs-svc/6589557530957282975) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "d0954ad0-cb56-4199-8bb7-8d3b5647f77c",
+                    "createdAt": "2026-02-19T16:12:06.539000+01:00",
+                    "message": "(service ecs-prod-service) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-blue/685ae4abdbf9d56a)"
+                },
+                {
+                    "id": "400faa1e-06e2-4318-a648-938088b92c3d",
+                    "createdAt": "2026-02-19T16:11:56.308000+01:00",
+                    "message": "(service ecs-prod-service) has stopped 1 running tasks: (task 320a6fef70e74e81bb034497182dc8d2)."
+                },
+                {
+                    "id": "7259b00c-194b-4589-9be9-f03ca028c3a9",
+                    "createdAt": "2026-02-19T16:11:56.307000+01:00",
+                    "message": "(service ecs-prod-service) (task 320a6fef70e74e81bb034497182dc8d2) failed container health checks."
+                },
+                {
+                    "id": "60e07126-6695-46e7-855d-6132507a9a00",
+                    "createdAt": "2026-02-19T16:09:52.384000+01:00",
+                    "message": "(service ecs-prod-service) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-blue/685ae4abdbf9d56a)"
+                },
+                {
+                    "id": "5a6541c3-5644-4cb2-a5c0-6b58f030b4df",
+                    "createdAt": "2026-02-19T16:09:43.005000+01:00",
+                    "message": "(service ecs-prod-service) has started 1 tasks: (task c315ec32895c4b9f888852e2c169e484)."
+                },
+                {
+                    "id": "229a6ac9-0e26-4991-a754-abdbc9b22aac",
+                    "createdAt": "2026-02-19T16:09:22.393000+01:00",
+                    "message": "(service ecs-prod-service) has started 1 tasks: (task bacac1f5b3ea4f3fa9d6c301ff0389cb). Amazon ECS replaced 1 tasks due to an unhealthy status."
+                },
+                {
+                    "id": "acbb565a-9ed4-44f9-8b4d-6b743f332986",
+                    "createdAt": "2026-02-19T16:08:30.318000+01:00",
+                    "message": "(service ecs-prod-service, taskSet ecs-svc/7387014955115779478) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "fe7827f6-f45f-4140-bfaa-d207a042fab1",
+                    "createdAt": "2026-02-19T16:08:30.314000+01:00",
+                    "message": "(service ecs-prod-service) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-blue/685ae4abdbf9d56a)"
+                },
+                {
+                    "id": "690fb0d1-4ccd-4837-8a88-2491938951d4",
+                    "createdAt": "2026-02-19T16:08:19.552000+01:00",
+                    "message": "(service ecs-prod-service) has stopped 1 running tasks: (task 5c9c020eaadf42cd9faa0c447240f2a2)."
+                },
+                {
+                    "id": "b6f88ccb-f44a-401f-90b1-1d154d9491aa",
+                    "createdAt": "2026-02-19T16:08:19.548000+01:00",
+                    "message": "(service ecs-prod-service) (task 5c9c020eaadf42cd9faa0c447240f2a2) failed container health checks."
+                },
+                {
+                    "id": "2ce25aab-ee6f-48b0-9741-0673378f4743",
+                    "createdAt": "2026-02-19T16:07:58.859000+01:00",
+                    "message": "(service ecs-prod-service, taskSet ecs-svc/6589557530957282975) has begun draining connections on 1 tasks."
+                }
+            ],
+            "createdAt": "2026-02-19T10:11:03.637000+01:00",
+            "placementConstraints": [],
+            "placementStrategy": [],
+            "networkConfiguration": {
+                "awsvpcConfiguration": {
+                    "subnets": [
+                        "subnet-0f03d9302f0d6471e",
+                        "subnet-0cb9b9135533a98e8"
+                    ],
+                    "securityGroups": [
+                        "sg-09a3082e31d282821"
+                    ],
+                    "assignPublicIp": "ENABLED"
+                }
+            },
+            "healthCheckGracePeriodSeconds": 60,
+            "schedulingStrategy": "REPLICA",
+            "deploymentController": {
+                "type": "ECS"
+            },
+            "createdBy": "arn:aws:iam::758620460011:user/awscli",
+            "enableECSManagedTags": false,
+            "propagateTags": "NONE",
+            "enableExecuteCommand": false,
+            "availabilityZoneRebalancing": "DISABLED"
+        },
+        {
+            "serviceArn": "arn:aws:ecs:us-east-1:758620460011:service/ecs-prod-cluster/ecs-prod-service-green",
+            "serviceName": "ecs-prod-service-green",
+            "clusterArn": "arn:aws:ecs:us-east-1:758620460011:cluster/ecs-prod-cluster",
+            "loadBalancers": [
+                {
+                    "targetGroupArn": "arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320",
+                    "containerName": "flask-app",
+                    "containerPort": 8000
+                }
+            ],
+            "serviceRegistries": [],
+            "status": "ACTIVE",
+            "desiredCount": 2,
+            "runningCount": 2,
+            "pendingCount": 0,
+            "launchType": "FARGATE",
+            "platformVersion": "LATEST",
+            "platformFamily": "Linux",
+            "taskDefinition": "arn:aws:ecs:us-east-1:758620460011:task-definition/ecs-prod-flask-app-green:1",
+            "deploymentConfiguration": {
+                "deploymentCircuitBreaker": {
+                    "enable": false,
+                    "rollback": false
+                },
+                "maximumPercent": 200,
+                "minimumHealthyPercent": 100,
+                "strategy": "ROLLING",
+                "bakeTimeInMinutes": 0
+            },
+            "deployments": [
+                {
+                    "id": "ecs-svc/4820373995724065970",
+                    "status": "PRIMARY",
+                    "taskDefinition": "arn:aws:ecs:us-east-1:758620460011:task-definition/ecs-prod-flask-app-green:1",
+                    "desiredCount": 2,
+                    "pendingCount": 0,
+                    "runningCount": 2,
+                    "failedTasks": 12,
+                    "createdAt": "2026-02-19T16:14:13.169000+01:00",
+                    "updatedAt": "2026-02-19T16:15:11.458000+01:00",
+                    "launchType": "FARGATE",
+                    "platformVersion": "1.4.0",
+                    "platformFamily": "Linux",
+                    "networkConfiguration": {
+                        "awsvpcConfiguration": {
+                            "subnets": [
+                                "subnet-0f03d9302f0d6471e",
+                                "subnet-0cb9b9135533a98e8"
+                            ],
+                            "securityGroups": [
+                                "sg-09a3082e31d282821"
+                            ],
+                            "assignPublicIp": "ENABLED"
+                        }
+                    },
+                    "rolloutState": "IN_PROGRESS",
+                    "rolloutStateReason": "ECS deployment ecs-svc/4820373995724065970 in progress."
+                },
+                {
+                    "id": "ecs-svc/9840007775579767562",
+                    "status": "ACTIVE",
+                    "taskDefinition": "arn:aws:ecs:us-east-1:758620460011:task-definition/ecs-prod-flask-app-green:1",
+                    "desiredCount": 0,
+                    "pendingCount": 0,
+                    "runningCount": 0,
+                    "failedTasks": 0,
+                    "createdAt": "2026-02-19T14:47:01.571000+01:00",
+                    "updatedAt": "2026-02-19T16:15:11.478000+01:00",
+                    "launchType": "FARGATE",
+                    "platformVersion": "1.4.0",
+                    "platformFamily": "Linux",
+                    "networkConfiguration": {
+                        "awsvpcConfiguration": {
+                            "subnets": [
+                                "subnet-0f03d9302f0d6471e",
+                                "subnet-0cb9b9135533a98e8"
+                            ],
+                            "securityGroups": [
+                                "sg-09a3082e31d282821"
+                            ],
+                            "assignPublicIp": "ENABLED"
+                        }
+                    },
+                    "rolloutState": "COMPLETED",
+                    "rolloutStateReason": "ECS deployment ecs-svc/9840007775579767562 completed."
+                }
+            ],
+            "roleArn": "arn:aws:iam::758620460011:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+            "events": [
+                {
+                    "id": "8dc0e89e-f581-4e8f-8c55-003222db204a",
+                    "createdAt": "2026-02-19T16:40:44.805000+01:00",
+                    "message": "(service ecs-prod-service-green, taskSet ecs-svc/4820373995724065970) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "640e5c34-2cdb-4678-ad70-cc7b2671b53c",
+                    "createdAt": "2026-02-19T16:40:44.799000+01:00",
+                    "message": "(service ecs-prod-service-green) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320)"
+                },
+                {
+                    "id": "060c277b-e7d5-4f12-a90a-25d02b498b11",
+                    "createdAt": "2026-02-19T16:40:34.815000+01:00",
+                    "message": "(service ecs-prod-service-green) has stopped 1 running tasks: (task b569659f1ad549ed930bd66e80093edb)."
+                },
+                {
+                    "id": "9cc583a1-9733-4e07-b2d4-eecd5b5dc72f",
+                    "createdAt": "2026-02-19T16:40:34.814000+01:00",
+                    "message": "(service ecs-prod-service-green) (task b569659f1ad549ed930bd66e80093edb) failed container health checks."
+                },
+                {
+                    "id": "6b8026cf-6a87-4a0e-942f-40de5be8f0c3",
+                    "createdAt": "2026-02-19T16:39:54.306000+01:00",
+                    "message": "(service ecs-prod-service-green, taskSet ecs-svc/4820373995724065970) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "57f1809e-e95b-42aa-9d78-643871781206",
+                    "createdAt": "2026-02-19T16:39:54.301000+01:00",
+                    "message": "(service ecs-prod-service-green) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320)"
+                },
+                {
+                    "id": "4bfe86b6-ecf8-44c1-91fe-99d361de656e",
+                    "createdAt": "2026-02-19T16:39:44.008000+01:00",
+                    "message": "(service ecs-prod-service-green) has stopped 1 running tasks: (task 06e3debae89c49ff925a14761577afb0)."
+                },
+                {
+                    "id": "58749629-4298-40ee-8ba4-da507320ab4a",
+                    "createdAt": "2026-02-19T16:39:44.007000+01:00",
+                    "message": "(service ecs-prod-service-green) (task 06e3debae89c49ff925a14761577afb0) failed container health checks."
+                },
+                {
+                    "id": "c5d727ba-a992-42be-aefa-65bb15b8ebc4",
+                    "createdAt": "2026-02-19T16:38:30.757000+01:00",
+                    "message": "(service ecs-prod-service-green) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320)"
+                },
+                {
+                    "id": "bf2ff8b9-16ce-4b25-9a9b-fe58f3188413",
+                    "createdAt": "2026-02-19T16:38:02.119000+01:00",
+                    "message": "(service ecs-prod-service-green) has started 1 tasks: (task c5a029911ed8483b9fffba46d50b6e56). Amazon ECS replaced 1 tasks due to an unhealthy status."
+                },
+                {
+                    "id": "fd094ae1-22b5-4665-b582-746ef79b36a6",
+                    "createdAt": "2026-02-19T16:37:51.152000+01:00",
+                    "message": "(service ecs-prod-service-green) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320)"
+                },
+                {
+                    "id": "fe7c4ee6-7cc8-46b9-a7b3-fad74d52d157",
+                    "createdAt": "2026-02-19T16:37:20.531000+01:00",
+                    "message": "(service ecs-prod-service-green) has started 1 tasks: (task b569659f1ad549ed930bd66e80093edb). Amazon ECS replaced 1 tasks due to an unhealthy status."
+                },
+                {
+                    "id": "7966c276-416e-42b2-9c27-e1ff3e9dcb2d",
+                    "createdAt": "2026-02-19T16:36:38.227000+01:00",
+                    "message": "(service ecs-prod-service-green, taskSet ecs-svc/4820373995724065970) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "6fc2dbbb-1343-403c-aab6-966d3ef1c800",
+                    "createdAt": "2026-02-19T16:36:38.222000+01:00",
+                    "message": "(service ecs-prod-service-green) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320)"
+                },
+                {
+                    "id": "ec713b45-d9a4-4dd3-9614-b47bb82620d4",
+                    "createdAt": "2026-02-19T16:36:28.463000+01:00",
+                    "message": "(service ecs-prod-service-green) has stopped 1 running tasks: (task a03c52dca8c54dcfbbcd4eb3d509d90f)."
+                },
+                {
+                    "id": "323db2a7-ced3-41b8-a879-297bf1e4b905",
+                    "createdAt": "2026-02-19T16:36:28.462000+01:00",
+                    "message": "(service ecs-prod-service-green) (task a03c52dca8c54dcfbbcd4eb3d509d90f) failed container health checks."
+                },
+                {
+                    "id": "bd1ee49d-1722-4caa-bf8b-1876b1035732",
+                    "createdAt": "2026-02-19T16:35:57.515000+01:00",
+                    "message": "(service ecs-prod-service-green, taskSet ecs-svc/4820373995724065970) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "9792aa3f-e84e-4cda-87dd-d651221bbdae",
+                    "createdAt": "2026-02-19T16:35:57.509000+01:00",
+                    "message": "(service ecs-prod-service-green) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320)"
+                },
+                {
+                    "id": "34ad331f-d310-4280-8995-06818b871c4f",
+                    "createdAt": "2026-02-19T16:35:47.227000+01:00",
+                    "message": "(service ecs-prod-service-green) has stopped 1 running tasks: (task 1aabeef6e4324ca7a0d82c4938f552da)."
+                },
+                {
+                    "id": "9ca369bd-1758-4697-8dd5-5ff6ac3c67e9",
+                    "createdAt": "2026-02-19T16:35:47.226000+01:00",
+                    "message": "(service ecs-prod-service-green) (task 1aabeef6e4324ca7a0d82c4938f552da) failed container health checks."
+                },
+                {
+                    "id": "0c2c9630-26ec-4661-b6ad-52f8b7077712",
+                    "createdAt": "2026-02-19T16:34:35.611000+01:00",
+                    "message": "(service ecs-prod-service-green) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320)"
+                },
+                {
+                    "id": "b982c381-b2ef-4c68-87bd-7367916200ad",
+                    "createdAt": "2026-02-19T16:34:05.003000+01:00",
+                    "message": "(service ecs-prod-service-green) has started 1 tasks: (task a03c52dca8c54dcfbbcd4eb3d509d90f). Amazon ECS replaced 1 tasks due to an unhealthy status."
+                },
+                {
+                    "id": "dc0b9765-0343-4f26-ba06-9190ebdedd32",
+                    "createdAt": "2026-02-19T16:33:54.378000+01:00",
+                    "message": "(service ecs-prod-service-green) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320)"
+                },
+                {
+                    "id": "82aa5d1b-b53e-4b43-8b44-57216e602626",
+                    "createdAt": "2026-02-19T16:33:23.515000+01:00",
+                    "message": "(service ecs-prod-service-green) has started 1 tasks: (task e800b68eff28443e850671da7f92e330). Amazon ECS replaced 1 tasks due to an unhealthy status."
+                },
+                {
+                    "id": "4ea03006-eca1-4dce-9abf-7292c2e02050",
+                    "createdAt": "2026-02-19T16:32:41.892000+01:00",
+                    "message": "(service ecs-prod-service-green, taskSet ecs-svc/4820373995724065970) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "c89223e7-07a8-4f36-8b2b-be5be2b782f8",
+                    "createdAt": "2026-02-19T16:32:41.886000+01:00",
+                    "message": "(service ecs-prod-service-green) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320)"
+                },
+                {
+                    "id": "06e5b3c9-eee1-46ee-aae1-f8887b07496e",
+                    "createdAt": "2026-02-19T16:32:31.675000+01:00",
+                    "message": "(service ecs-prod-service-green) has stopped 1 running tasks: (task f60800e82e024baaae70b909b4577376)."
+                },
+                {
+                    "id": "96955f5b-8069-4198-a89b-deb2f9991af8",
+                    "createdAt": "2026-02-19T16:32:31.674000+01:00",
+                    "message": "(service ecs-prod-service-green) (task f60800e82e024baaae70b909b4577376) failed container health checks."
+                },
+                {
+                    "id": "2e420f80-80a3-4e9f-82b6-1db4aca6fe81",
+                    "createdAt": "2026-02-19T16:32:00.733000+01:00",
+                    "message": "(service ecs-prod-service-green, taskSet ecs-svc/4820373995724065970) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "ab127928-65a7-46f0-9be3-755277298ac1",
+                    "createdAt": "2026-02-19T16:32:00.725000+01:00",
+                    "message": "(service ecs-prod-service-green) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320)"
+                },
+                {
+                    "id": "f526bb55-07e5-497d-ba6b-b0bdb0c54440",
+                    "createdAt": "2026-02-19T16:31:50.463000+01:00",
+                    "message": "(service ecs-prod-service-green) has stopped 1 running tasks: (task 2ecba27dfda149b5add70fff08ac6b34)."
+                },
+                {
+                    "id": "81c097b7-e70d-42c7-acc7-79ff43527b6d",
+                    "createdAt": "2026-02-19T16:31:50.462000+01:00",
+                    "message": "(service ecs-prod-service-green) (task 2ecba27dfda149b5add70fff08ac6b34) failed container health checks."
+                },
+                {
+                    "id": "e60118cc-b798-46f9-b246-2b95f1df2524",
+                    "createdAt": "2026-02-19T16:29:57.627000+01:00",
+                    "message": "(service ecs-prod-service-green) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320)"
+                },
+                {
+                    "id": "4d2a0d9d-0036-48dd-ba54-75e311d4441b",
+                    "createdAt": "2026-02-19T16:29:47.563000+01:00",
+                    "message": "(service ecs-prod-service-green) has started 1 tasks: (task 06e3debae89c49ff925a14761577afb0). Amazon ECS replaced 1 tasks due to an unhealthy status."
+                },
+                {
+                    "id": "de8374a3-0c90-4fbf-8959-a3a8ef466a29",
+                    "createdAt": "2026-02-19T16:29:26.495000+01:00",
+                    "message": "(service ecs-prod-service-green) has started 1 tasks: (task 1aabeef6e4324ca7a0d82c4938f552da). Amazon ECS replaced 1 tasks due to an unhealthy status."
+                },
+                {
+                    "id": "153d0d1e-cbdf-45ec-8ba7-ff1653a20d25",
+                    "createdAt": "2026-02-19T16:28:24.560000+01:00",
+                    "message": "(service ecs-prod-service-green, taskSet ecs-svc/4820373995724065970) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "83e100db-a7ab-4170-bd47-13ac6ef037fa",
+                    "createdAt": "2026-02-19T16:28:24.554000+01:00",
+                    "message": "(service ecs-prod-service-green) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320)"
+                },
+                {
+                    "id": "a09ac141-7dc8-4d5a-8e69-7224c0f14117",
+                    "createdAt": "2026-02-19T16:28:14.337000+01:00",
+                    "message": "(service ecs-prod-service-green) has stopped 1 running tasks: (task 11596087c8dd46418d4cd31a7c5fb3d5)."
+                },
+                {
+                    "id": "5052129f-e82d-405f-81c5-e912073679a7",
+                    "createdAt": "2026-02-19T16:28:14.336000+01:00",
+                    "message": "(service ecs-prod-service-green) (task 11596087c8dd46418d4cd31a7c5fb3d5) failed container health checks."
+                },
+                {
+                    "id": "4fb2b1a1-76e5-4e6c-b156-a26731779afa",
+                    "createdAt": "2026-02-19T16:28:04.001000+01:00",
+                    "message": "(service ecs-prod-service-green, taskSet ecs-svc/4820373995724065970) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "cee6eed1-7d2c-4365-b335-817c60b4a197",
+                    "createdAt": "2026-02-19T16:28:03.995000+01:00",
+                    "message": "(service ecs-prod-service-green) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320)"
+                },
+                {
+                    "id": "a28285c6-9668-472b-85e3-386796f271a8",
+                    "createdAt": "2026-02-19T16:27:53.740000+01:00",
+                    "message": "(service ecs-prod-service-green) has stopped 1 running tasks: (task 17b44a2f83164935af5e83ce72a5f3dc)."
+                },
+                {
+                    "id": "27e33837-f2b9-4bc2-804b-467c8741c8d6",
+                    "createdAt": "2026-02-19T16:27:53.739000+01:00",
+                    "message": "(service ecs-prod-service-green) (task 17b44a2f83164935af5e83ce72a5f3dc) failed container health checks."
+                },
+                {
+                    "id": "5a45b129-db9a-42b8-b17f-e75c5078d711",
+                    "createdAt": "2026-02-19T16:26:00.668000+01:00",
+                    "message": "(service ecs-prod-service-green) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320)"
+                },
+                {
+                    "id": "315518d3-0cba-467b-b3b5-246e45fdb300",
+                    "createdAt": "2026-02-19T16:25:50.795000+01:00",
+                    "message": "(service ecs-prod-service-green) has started 1 tasks: (task 11596087c8dd46418d4cd31a7c5fb3d5). Amazon ECS replaced 1 tasks due to an unhealthy status."
+                },
+                {
+                    "id": "7e9c0f05-7aff-46a8-9a0c-83766bc8f731",
+                    "createdAt": "2026-02-19T16:25:30.199000+01:00",
+                    "message": "(service ecs-prod-service-green) has started 1 tasks: (task 2ecba27dfda149b5add70fff08ac6b34). Amazon ECS replaced 1 tasks due to an unhealthy status."
+                },
+                {
+                    "id": "2b869e7f-c3e6-4a29-90de-0c4ec86431f3",
+                    "createdAt": "2026-02-19T16:24:27.649000+01:00",
+                    "message": "(service ecs-prod-service-green, taskSet ecs-svc/4820373995724065970) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "b7cc4c22-8ad1-4962-8ad3-5e8cc8ea7cae",
+                    "createdAt": "2026-02-19T16:24:27.645000+01:00",
+                    "message": "(service ecs-prod-service-green) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320)"
+                },
+                {
+                    "id": "03a5f389-4605-4995-8f7c-1d57192df243",
+                    "createdAt": "2026-02-19T16:24:17.372000+01:00",
+                    "message": "(service ecs-prod-service-green) has stopped 1 running tasks: (task e3eb79ede515452999c7a04ec348f124)."
+                },
+                {
+                    "id": "b74572dc-cc62-4173-ae48-57fb7aff15d7",
+                    "createdAt": "2026-02-19T16:24:17.371000+01:00",
+                    "message": "(service ecs-prod-service-green) (task e3eb79ede515452999c7a04ec348f124) failed container health checks."
+                },
+                {
+                    "id": "8e557595-5147-478b-8fe3-ec68268aa4d7",
+                    "createdAt": "2026-02-19T16:24:06.129000+01:00",
+                    "message": "(service ecs-prod-service-green, taskSet ecs-svc/4820373995724065970) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "e8c5c01c-12f4-432c-a5bd-163cf98aad64",
+                    "createdAt": "2026-02-19T16:24:06.103000+01:00",
+                    "message": "(service ecs-prod-service-green) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320)"
+                },
+                {
+                    "id": "e8554bac-a53e-45a6-b1ae-578281a54a99",
+                    "createdAt": "2026-02-19T16:23:56.705000+01:00",
+                    "message": "(service ecs-prod-service-green) has stopped 1 running tasks: (task 97bb421b52fe40ddbf3103da4f1d5dd9)."
+                },
+                {
+                    "id": "7d1b8e79-607c-4979-bc26-93bff7af9a95",
+                    "createdAt": "2026-02-19T16:23:56.704000+01:00",
+                    "message": "(service ecs-prod-service-green) (task 97bb421b52fe40ddbf3103da4f1d5dd9) failed container health checks."
+                },
+                {
+                    "id": "e18454a4-62e4-4459-beec-c42c7cbf5216",
+                    "createdAt": "2026-02-19T16:22:24.421000+01:00",
+                    "message": "(service ecs-prod-service-green) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320)"
+                },
+                {
+                    "id": "62327651-02b4-4439-bbd6-d1c8d8082a7b",
+                    "createdAt": "2026-02-19T16:21:54.093000+01:00",
+                    "message": "(service ecs-prod-service-green) has started 1 tasks: (task f60800e82e024baaae70b909b4577376). Amazon ECS replaced 1 tasks due to an unhealthy status."
+                },
+                {
+                    "id": "ae5e83a1-6205-472d-b30f-0ebb919f6c82",
+                    "createdAt": "2026-02-19T16:21:53.510000+01:00",
+                    "message": "(service ecs-prod-service-green) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320)"
+                },
+                {
+                    "id": "454a24af-7a43-4eaf-8398-983b758de9ed",
+                    "createdAt": "2026-02-19T16:21:33.076000+01:00",
+                    "message": "(service ecs-prod-service-green) has started 1 tasks: (task 97bb421b52fe40ddbf3103da4f1d5dd9). Amazon ECS replaced 1 tasks due to an unhealthy status."
+                },
+                {
+                    "id": "6b4c1b08-47ee-4f1e-bb4f-6f69b128fd6d",
+                    "createdAt": "2026-02-19T16:20:29.749000+01:00",
+                    "message": "(service ecs-prod-service-green, taskSet ecs-svc/4820373995724065970) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "52e89888-dfaf-48bc-966d-9f0d6f6a85c0",
+                    "createdAt": "2026-02-19T16:20:29.745000+01:00",
+                    "message": "(service ecs-prod-service-green) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320)"
+                },
+                {
+                    "id": "fd55d86c-8470-4471-becc-f1e1323d6adc",
+                    "createdAt": "2026-02-19T16:20:19.947000+01:00",
+                    "message": "(service ecs-prod-service-green) has stopped 1 running tasks: (task 17b939cb365646a1b9c46ae060fbf0e3)."
+                },
+                {
+                    "id": "a0933ecb-c1a7-4d71-9fda-0e6cdd36deb4",
+                    "createdAt": "2026-02-19T16:20:19.946000+01:00",
+                    "message": "(service ecs-prod-service-green) (task 17b939cb365646a1b9c46ae060fbf0e3) failed container health checks."
+                },
+                {
+                    "id": "9e07e6f9-5fb1-41ac-918c-33797f6229f8",
+                    "createdAt": "2026-02-19T16:20:10.048000+01:00",
+                    "message": "(service ecs-prod-service-green, taskSet ecs-svc/4820373995724065970) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "3e8b6603-c433-4f6f-941f-32ef3cfb05f7",
+                    "createdAt": "2026-02-19T16:20:10.043000+01:00",
+                    "message": "(service ecs-prod-service-green) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320)"
+                },
+                {
+                    "id": "55af273d-1b05-4b74-ac85-832cf1a2556e",
+                    "createdAt": "2026-02-19T16:19:59.771000+01:00",
+                    "message": "(service ecs-prod-service-green) has stopped 1 running tasks: (task ae805a130ba4416d963bba8cfbff69bb)."
+                },
+                {
+                    "id": "465244bc-7052-420e-a050-05fadd267106",
+                    "createdAt": "2026-02-19T16:19:59.770000+01:00",
+                    "message": "(service ecs-prod-service-green) (task ae805a130ba4416d963bba8cfbff69bb) failed container health checks."
+                },
+                {
+                    "id": "2766b575-5072-4649-be1b-6851e93a9a13",
+                    "createdAt": "2026-02-19T16:17:56.584000+01:00",
+                    "message": "(service ecs-prod-service-green) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320)"
+                },
+                {
+                    "id": "32a88533-2acf-4955-af40-86b6cee0d9f0",
+                    "createdAt": "2026-02-19T16:17:46.829000+01:00",
+                    "message": "(service ecs-prod-service-green) has started 1 tasks: (task e3eb79ede515452999c7a04ec348f124). Amazon ECS replaced 1 tasks due to an unhealthy status."
+                },
+                {
+                    "id": "bf7f95e9-0404-461a-a3e9-115cdce313d9",
+                    "createdAt": "2026-02-19T16:17:36.243000+01:00",
+                    "message": "(service ecs-prod-service-green) has started 1 tasks: (task 17b44a2f83164935af5e83ce72a5f3dc). Amazon ECS replaced 1 tasks due to an unhealthy status."
+                },
+                {
+                    "id": "da85be8c-f203-40f9-b235-8671a29e243e",
+                    "createdAt": "2026-02-19T16:15:42.009000+01:00",
+                    "message": "(service ecs-prod-service-green) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320)"
+                },
+                {
+                    "id": "9fe5b697-a189-415f-8001-4f2af3250882",
+                    "createdAt": "2026-02-19T16:15:12.392000+01:00",
+                    "message": "(service ecs-prod-service-green) has started 1 tasks: (task ae805a130ba4416d963bba8cfbff69bb)."
+                },
+                {
+                    "id": "759d3f16-14ce-4fa5-a13b-7aa5e7280169",
+                    "createdAt": "2026-02-19T16:14:50.937000+01:00",
+                    "message": "(service ecs-prod-service-green, taskSet ecs-svc/1566459946724849017) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "796ccef4-2f2d-44d1-83c7-fd5251b83b8f",
+                    "createdAt": "2026-02-19T16:14:50.931000+01:00",
+                    "message": "(service ecs-prod-service-green) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320)"
+                },
+                {
+                    "id": "c7f3ebca-3ad4-498f-9c15-23421936b617",
+                    "createdAt": "2026-02-19T16:14:41.224000+01:00",
+                    "message": "(service ecs-prod-service-green) has started 1 tasks: (task 17b939cb365646a1b9c46ae060fbf0e3)."
+                },
+                {
+                    "id": "d9ebd2f3-4e76-4cfd-be1c-1a1648903652",
+                    "createdAt": "2026-02-19T16:14:40.653000+01:00",
+                    "message": "(service ecs-prod-service-green) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320)"
+                },
+                {
+                    "id": "ef0496fa-4aa9-415a-a062-bf6dd75615a8",
+                    "createdAt": "2026-02-19T16:14:11.143000+01:00",
+                    "message": "(service ecs-prod-service-green) has started 1 tasks: (task 3426fdada38c41c795da59849b02d8b9)."
+                },
+                {
+                    "id": "143174d9-20ff-4a1e-85f3-e623bac333f6",
+                    "createdAt": "2026-02-19T16:14:10.373000+01:00",
+                    "message": "(service ecs-prod-service-green, taskSet ecs-svc/1566459946724849017) has begun draining connections on 2 tasks."
+                },
+                {
+                    "id": "1e770591-0d17-42f4-aaf9-da6c01a31e79",
+                    "createdAt": "2026-02-19T16:14:10.367000+01:00",
+                    "message": "(service ecs-prod-service-green) deregistered 2 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320)"
+                },
+                {
+                    "id": "0795a0d0-a165-477c-8087-05b0ad32d39d",
+                    "createdAt": "2026-02-19T16:13:19.952000+01:00",
+                    "message": "(service ecs-prod-service-green, taskSet ecs-svc/1566459946724849017) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "2e844085-1060-4847-8059-ba4804eaacd6",
+                    "createdAt": "2026-02-19T16:13:19.943000+01:00",
+                    "message": "(service ecs-prod-service-green) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320)"
+                },
+                {
+                    "id": "448f6e70-5715-4a6f-8d81-e20804f9754d",
+                    "createdAt": "2026-02-19T16:13:19.879000+01:00",
+                    "message": "(service ecs-prod-service-green) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320)"
+                },
+                {
+                    "id": "bb2e7aba-32ac-4314-8980-c523cc02b44f",
+                    "createdAt": "2026-02-19T16:13:06.818000+01:00",
+                    "message": "(service ecs-prod-service-green) has started 1 tasks: (task c78e40c91bd84a35a089b8ddb34b9691)."
+                },
+                {
+                    "id": "c5f90191-1b9b-475c-b250-71c9cb74c4c2",
+                    "createdAt": "2026-02-19T16:12:56.938000+01:00",
+                    "message": "(service ecs-prod-service-green) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320)"
+                },
+                {
+                    "id": "4f6b7cdf-0925-4bfa-a133-6223b8748d7a",
+                    "createdAt": "2026-02-19T16:12:47.966000+01:00",
+                    "message": "(service ecs-prod-service-green) has started 1 tasks: (task 7e5bc91e0af041939cce5a02f36df998)."
+                },
+                {
+                    "id": "f0b18192-652d-4841-a1ea-5d7c2622f6ec",
+                    "createdAt": "2026-02-19T16:12:47.245000+01:00",
+                    "message": "(service ecs-prod-service-green, taskSet ecs-svc/1566459946724849017) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "90cb5b80-d4e0-4286-a7d3-24c5a4a2c59a",
+                    "createdAt": "2026-02-19T16:12:47.240000+01:00",
+                    "message": "(service ecs-prod-service-green) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320)"
+                },
+                {
+                    "id": "52167615-a012-47dd-9096-2c847e875d67",
+                    "createdAt": "2026-02-19T16:12:38.870000+01:00",
+                    "message": "(service ecs-prod-service-green) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320)"
+                },
+                {
+                    "id": "6c35f889-c023-4f3f-ab95-751f2b3a9a67",
+                    "createdAt": "2026-02-19T16:12:19.779000+01:00",
+                    "message": "(service ecs-prod-service-green) has started 1 tasks: (task f48f37b9e3524237badcf717ba3890d6)."
+                },
+                {
+                    "id": "6fa32de2-fad6-40b5-bff8-d7c1b56f6104",
+                    "createdAt": "2026-02-19T16:12:09.704000+01:00",
+                    "message": "(service ecs-prod-service-green) has started 1 tasks: (task 4797a9e6cdc84e32bf99935114b9eae5)."
+                },
+                {
+                    "id": "0ae19fc8-0e45-4bb5-a1dd-dc10c660f7a9",
+                    "createdAt": "2026-02-19T16:12:09.012000+01:00",
+                    "message": "(service ecs-prod-service-green, taskSet ecs-svc/1566459946724849017) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "19de9ce6-3931-4a73-958a-d93c0b8aeccc",
+                    "createdAt": "2026-02-19T16:12:09.002000+01:00",
+                    "message": "(service ecs-prod-service-green) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320)"
+                },
+                {
+                    "id": "1405a083-e751-4c1a-8e67-d54e351b7569",
+                    "createdAt": "2026-02-19T16:11:26.124000+01:00",
+                    "message": "(service ecs-prod-service-green, taskSet ecs-svc/1566459946724849017) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "6efa6d98-08ab-4ac9-931f-9c279c9b02fe",
+                    "createdAt": "2026-02-19T16:11:26.110000+01:00",
+                    "message": "(service ecs-prod-service-green) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320)"
+                },
+                {
+                    "id": "d5d19d72-3bf9-48cc-9410-76d96ac704f0",
+                    "createdAt": "2026-02-19T16:11:13.474000+01:00",
+                    "message": "(service ecs-prod-service-green) registered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320)"
+                },
+                {
+                    "id": "02109d44-e0db-4465-9efc-fd21fd507a33",
+                    "createdAt": "2026-02-19T16:11:02.876000+01:00",
+                    "message": "(service ecs-prod-service-green, taskSet ecs-svc/1566459946724849017) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "b6dc4e1d-8ba6-412a-bcac-30d604da0a9a",
+                    "createdAt": "2026-02-19T16:11:02.850000+01:00",
+                    "message": "(service ecs-prod-service-green) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320)"
+                },
+                {
+                    "id": "c162f15e-a1c6-48d9-bac5-647473edc6de",
+                    "createdAt": "2026-02-19T16:10:54.571000+01:00",
+                    "message": "(service ecs-prod-service-green) has started 1 tasks: (task 909ef8a196dc4589af6bb42a9b2cb136)."
+                },
+                {
+                    "id": "9aedde26-4966-42f2-ad11-b2665a8d5a82",
+                    "createdAt": "2026-02-19T16:10:53.846000+01:00",
+                    "message": "(service ecs-prod-service-green, taskSet ecs-svc/1566459946724849017) has begun draining connections on 1 tasks."
+                },
+                {
+                    "id": "688f2958-f965-4a96-84f7-79f68a1defff",
+                    "createdAt": "2026-02-19T16:10:53.841000+01:00",
+                    "message": "(service ecs-prod-service-green) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320)"
+                },
+                {
+                    "id": "2c40ce55-dfb8-4bf9-a730-47a666fd2655",
+                    "createdAt": "2026-02-19T16:10:42.195000+01:00",
+                    "message": "(service ecs-prod-service-green) has started 1 tasks: (task a622e0a473eb4c6ca5bfe595f61c57a6)."
+                }
+            ],
+            "createdAt": "2026-02-19T14:47:01.571000+01:00",
+            "placementConstraints": [],
+            "placementStrategy": [],
+            "networkConfiguration": {
+                "awsvpcConfiguration": {
+                    "subnets": [
+                        "subnet-0f03d9302f0d6471e",
+                        "subnet-0cb9b9135533a98e8"
+                    ],
+                    "securityGroups": [
+                        "sg-09a3082e31d282821"
+                    ],
+                    "assignPublicIp": "ENABLED"
+                }
+            },
+            "healthCheckGracePeriodSeconds": 60,
+            "schedulingStrategy": "REPLICA",
+            "deploymentController": {
+                "type": "ECS"
+            },
+            "createdBy": "arn:aws:iam::758620460011:user/awscli",
+            "enableECSManagedTags": false,
+            "propagateTags": "NONE",
+            "enableExecuteCommand": false,
+            "availabilityZoneRebalancing": "DISABLED"
+        }
+    ],
+    "failures": []
+}

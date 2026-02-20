@@ -1,8 +1,18 @@
+# =============================================================
 # Terraform
+# =============================================================
 .terraform/
 *.tfstate
 *.tfstate.*
+*.tfstate.backup
 crash.log
+crash.*.log
+.terraform.lock.hcl
+
+# Terraform execution plans (contain state — never commit)
+*.tfplan
+
+# Terraform variable files (may contain secrets)
 *.tfvars
 *.tfvars.json
 override.tf
@@ -12,17 +22,87 @@ override.tf.json
 .terraformrc
 terraform.rc
 
-# Execution Plans
-*.tfplan
+# =============================================================
+# Secrets & Credentials — NEVER COMMIT
+# =============================================================
+*.pem
+*.key
+*.p12
+*.pfx
+.env
+.env.*
+*.secret
+*secret*
+*password*
+*credentials*
+.db-password-backup.txt
+aws-credentials.txt
 
-# Local files
+# =============================================================
+# AWS CLI / SDK
+# =============================================================
+# Don't commit local AWS credential overrides
+.aws/
+
+# =============================================================
+# Docker
+# =============================================================
+# Build artifacts (not source)
+*.tar
+
+# =============================================================
+# Python
+# =============================================================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+.venv/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# =============================================================
+# Evidence — Screenshots & large binary files
+# (Evidence JSON is committed; images stored separately)
+# =============================================================
+docs/evidence/screenshots/
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.mp4
+
+# =============================================================
+# Personal notes & learning material (not for repo)
+# =============================================================
 LEARNING.md
+notes.md
+TODO.md
+scratch/
+tmp/
 
-# IDEs
+# =============================================================
+# IDEs & OS
+# =============================================================
 .vscode/
 .idea/
+.qodo/
+*.swp
+*.swo
+*~
 .DS_Store
+Thumbs.db
+desktop.ini
 
-# Temporary files
+# =============================================================
+# Logs
+# =============================================================
 *.log
-tmp/
+logs/

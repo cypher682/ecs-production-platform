@@ -1,0 +1,81 @@
+name: Rollback to Blue
+
+on:
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: "Reason for rollback"
+        required: true
+        type: string
+
+env:
+  AWS_REGION: us-east-1
+  ECS_CLUSTER: ecs-prod-cluster
+  ECS_SERVICE_BLUE: ecs-prod-service
+  ECS_SERVICE_GREEN: ecs-prod-service-green
+  LISTENER_ARN: arn:aws:elasticloadbalancing:us-east-1:758620460011:listener/app/ecs-prod-alb/c529ae37b5ed6daf/c8d36be55bbaecb6
+  BLUE_TG_ARN: arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-blue/685ae4abdbf9d56a
+  GREEN_TG_ARN: arn:aws:elasticloadbalancing:us-east-1:758620460011:targetgroup/ecs-prod-green/5076df5d9c3fb320
+
+jobs:
+  rollback:
+    name: Rollback to Blue
+    runs-on: ubuntu-latest
+
+    # Uncomment when IAM OIDC role is created
+    # permissions:
+    #   id-token: write
+    #   contents: read
+
+    steps:
+      # -------------------------------------------------------
+      # OIDC Authentication — uncomment after IAM setup
+      # -------------------------------------------------------
+      # - name: Configure AWS credentials (OIDC)
+      #   uses: aws-actions/configure-aws-credentials@v4
+      #   with:
+      #     role-to-assume: arn:aws:iam::758620460011:role/ecs-prod-github-actions-deploy
+      #     aws-region: ${{ env.AWS_REGION }}
+
+      - name: Placeholder — OIDC not yet configured
+        run: |
+          echo "AWS authentication not configured."
+          exit 1
+
+      - name: Switch ALB traffic to blue
+        run: |
+          aws elbv2 modify-listener \
+            --listener-arn "${{ env.LISTENER_ARN }}" \
+            --default-actions '[{"Type":"forward","ForwardConfig":{"TargetGroups":[
+              {"TargetGroupArn":"${{ env.BLUE_TG_ARN }}","Weight":100},
+              {"TargetGroupArn":"${{ env.GREEN_TG_ARN }}","Weight":0}
+            ]}}]' \
+            --region ${{ env.AWS_REGION }}
+          echo "Traffic switched to blue."
+
+      - name: Scale up blue service
+        run: |
+          aws ecs update-service \
+            --cluster ${{ env.ECS_CLUSTER }} \
+            --service ${{ env.ECS_SERVICE_BLUE }} \
+            --desired-count 2 \
+            --region ${{ env.AWS_REGION }}
+          echo "Blue service scaling to 2 tasks."
+
+      - name: Scale down green service
+        run: |
+          aws ecs update-service \
+            --cluster ${{ env.ECS_CLUSTER }} \
+            --service ${{ env.ECS_SERVICE_GREEN }} \
+            --desired-count 0 \
+            --region ${{ env.AWS_REGION }}
+          echo "Green service scaled to 0."
+
+      - name: Rollback summary
+        run: |
+          echo "Rollback complete."
+          echo "Reason: ${{ github.event.inputs.reason }}"
+          echo "Initiated by: ${{ github.actor }}"
+          echo ""
+          echo "Verify blue is serving:"
+          echo "  curl https://app.cipherpol.xyz/health"

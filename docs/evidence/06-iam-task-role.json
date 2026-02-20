@@ -1,0 +1,48 @@
+{
+    "Role": {
+        "Path": "/",
+        "RoleName": "ecs-prod-ecs-task-20260216093558708100000001",
+        "RoleId": "AROA3BIKNSPV2Z634LERK",
+        "Arn": "arn:aws:iam::758620460011:role/ecs-prod-ecs-task-20260216093558708100000001",
+        "CreateDate": "2026-02-16T09:36:00+00:00",
+        "AssumeRolePolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Service": "ecs-tasks.amazonaws.com"
+                    },
+                    "Action": "sts:AssumeRole"
+                }
+            ]
+        },
+        "MaxSessionDuration": 3600,
+        "Tags": [
+            {
+                "Key": "Environment",
+                "Value": "prod"
+            },
+            {
+                "Key": "Name",
+                "Value": "ecs-prod-ecs-task-role"
+            },
+            {
+                "Key": "ManagedBy",
+                "Value": "terraform"
+            },
+            {
+                "Key": "Owner",
+                "Value": "cypher682"
+            },
+            {
+                "Key": "Project",
+                "Value": "ecs-production-platform"
+            }
+        ],
+        "RoleLastUsed": {
+            "LastUsedDate": "2026-02-19T20:58:57+00:00",
+            "Region": "us-east-1"
+        }
+    }
+}

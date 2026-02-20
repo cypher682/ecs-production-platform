@@ -1,0 +1,212 @@
+{
+    "Subnets": [
+        {
+            "AvailabilityZoneId": "use1-az4",
+            "MapCustomerOwnedIpOnLaunch": false,
+            "OwnerId": "758620460011",
+            "AssignIpv6AddressOnCreation": false,
+            "Ipv6CidrBlockAssociationSet": [],
+            "Tags": [
+                {
+                    "Key": "Project",
+                    "Value": "ecs-production-platform"
+                },
+                {
+                    "Key": "Environment",
+                    "Value": "prod"
+                },
+                {
+                    "Key": "Owner",
+                    "Value": "cypher682"
+                },
+                {
+                    "Key": "ManagedBy",
+                    "Value": "terraform"
+                },
+                {
+                    "Key": "Name",
+                    "Value": "ecs-prod--private-us-east-1a"
+                },
+                {
+                    "Key": "Type",
+                    "Value": "Private"
+                }
+            ],
+            "SubnetArn": "arn:aws:ec2:us-east-1:758620460011:subnet/subnet-00c0c46774db560b2",
+            "EnableDns64": false,
+            "Ipv6Native": false,
+            "PrivateDnsNameOptionsOnLaunch": {
+                "HostnameType": "ip-name",
+                "EnableResourceNameDnsARecord": false,
+                "EnableResourceNameDnsAAAARecord": false
+            },
+            "BlockPublicAccessStates": {
+                "InternetGatewayBlockMode": "off"
+            },
+            "SubnetId": "subnet-00c0c46774db560b2",
+            "State": "available",
+            "VpcId": "vpc-0d2a268b450bd99b0",
+            "CidrBlock": "10.0.10.0/24",
+            "AvailableIpAddressCount": 251,
+            "AvailabilityZone": "us-east-1a",
+            "DefaultForAz": false,
+            "MapPublicIpOnLaunch": false
+        },
+        {
+            "AvailabilityZoneId": "use1-az6",
+            "MapCustomerOwnedIpOnLaunch": false,
+            "OwnerId": "758620460011",
+            "AssignIpv6AddressOnCreation": false,
+            "Ipv6CidrBlockAssociationSet": [],
+            "Tags": [
+                {
+                    "Key": "ManagedBy",
+                    "Value": "terraform"
+                },
+                {
+                    "Key": "Environment",
+                    "Value": "prod"
+                },
+                {
+                    "Key": "Project",
+                    "Value": "ecs-production-platform"
+                },
+                {
+                    "Key": "Owner",
+                    "Value": "cypher682"
+                },
+                {
+                    "Key": "Type",
+                    "Value": "Private"
+                },
+                {
+                    "Key": "Name",
+                    "Value": "ecs-prod--private-us-east-1b"
+                }
+            ],
+            "SubnetArn": "arn:aws:ec2:us-east-1:758620460011:subnet/subnet-0762d5bcc2722cf27",
+            "EnableDns64": false,
+            "Ipv6Native": false,
+            "PrivateDnsNameOptionsOnLaunch": {
+                "HostnameType": "ip-name",
+                "EnableResourceNameDnsARecord": false,
+                "EnableResourceNameDnsAAAARecord": false
+            },
+            "BlockPublicAccessStates": {
+                "InternetGatewayBlockMode": "off"
+            },
+            "SubnetId": "subnet-0762d5bcc2722cf27",
+            "State": "available",
+            "VpcId": "vpc-0d2a268b450bd99b0",
+            "CidrBlock": "10.0.11.0/24",
+            "AvailableIpAddressCount": 250,
+            "AvailabilityZone": "us-east-1b",
+            "DefaultForAz": false,
+            "MapPublicIpOnLaunch": false
+        },
+        {
+            "AvailabilityZoneId": "use1-az6",
+            "MapCustomerOwnedIpOnLaunch": false,
+            "OwnerId": "758620460011",
+            "AssignIpv6AddressOnCreation": false,
+            "Ipv6CidrBlockAssociationSet": [],
+            "Tags": [
+                {
+                    "Key": "Name",
+                    "Value": "ecs-prod--public-us-east-1b"
+                },
+                {
+                    "Key": "Environment",
+                    "Value": "prod"
+                },
+                {
+                    "Key": "Project",
+                    "Value": "ecs-production-platform"
+                },
+                {
+                    "Key": "Type",
+                    "Value": "public"
+                },
+                {
+                    "Key": "Owner",
+                    "Value": "cypher682"
+                },
+                {
+                    "Key": "ManagedBy",
+                    "Value": "terraform"
+                }
+            ],
+            "SubnetArn": "arn:aws:ec2:us-east-1:758620460011:subnet/subnet-0f03d9302f0d6471e",
+            "EnableDns64": false,
+            "Ipv6Native": false,
+            "PrivateDnsNameOptionsOnLaunch": {
+                "HostnameType": "ip-name",
+                "EnableResourceNameDnsARecord": false,
+                "EnableResourceNameDnsAAAARecord": false
+            },
+            "BlockPublicAccessStates": {
+                "InternetGatewayBlockMode": "off"
+            },
+            "SubnetId": "subnet-0f03d9302f0d6471e",
+            "State": "available",
+            "VpcId": "vpc-0d2a268b450bd99b0",
+            "CidrBlock": "10.0.1.0/24",
+            "AvailableIpAddressCount": 248,
+            "AvailabilityZone": "us-east-1b",
+            "DefaultForAz": false,
+            "MapPublicIpOnLaunch": true
+        },
+        {
+            "AvailabilityZoneId": "use1-az4",
+            "MapCustomerOwnedIpOnLaunch": false,
+            "OwnerId": "758620460011",
+            "AssignIpv6AddressOnCreation": false,
+            "Ipv6CidrBlockAssociationSet": [],
+            "Tags": [
+                {
+                    "Key": "Environment",
+                    "Value": "prod"
+                },
+                {
+                    "Key": "ManagedBy",
+                    "Value": "terraform"
+                },
+                {
+                    "Key": "Owner",
+                    "Value": "cypher682"
+                },
+                {
+                    "Key": "Type",
+                    "Value": "public"
+                },
+                {
+                    "Key": "Project",
+                    "Value": "ecs-production-platform"
+                },
+                {
+                    "Key": "Name",
+                    "Value": "ecs-prod--public-us-east-1a"
+                }
+            ],
+            "SubnetArn": "arn:aws:ec2:us-east-1:758620460011:subnet/subnet-0cb9b9135533a98e8",
+            "EnableDns64": false,
+            "Ipv6Native": false,
+            "PrivateDnsNameOptionsOnLaunch": {
+                "HostnameType": "ip-name",
+                "EnableResourceNameDnsARecord": false,
+                "EnableResourceNameDnsAAAARecord": false
+            },
+            "BlockPublicAccessStates": {
+                "InternetGatewayBlockMode": "off"
+            },
+            "SubnetId": "subnet-0cb9b9135533a98e8",
+            "State": "available",
+            "VpcId": "vpc-0d2a268b450bd99b0",
+            "CidrBlock": "10.0.0.0/24",
+            "AvailableIpAddressCount": 249,
+            "AvailabilityZone": "us-east-1a",
+            "DefaultForAz": false,
+            "MapPublicIpOnLaunch": true
+        }
+    ]
+}

@@ -1,0 +1,47 @@
+{
+    "Vpcs": [
+        {
+            "OwnerId": "758620460011",
+            "InstanceTenancy": "default",
+            "CidrBlockAssociationSet": [
+                {
+                    "AssociationId": "vpc-cidr-assoc-012f423919c69a7e4",
+                    "CidrBlock": "10.0.0.0/16",
+                    "CidrBlockState": {
+                        "State": "associated"
+                    }
+                }
+            ],
+            "IsDefault": false,
+            "Tags": [
+                {
+                    "Key": "ManagedBy",
+                    "Value": "terraform"
+                },
+                {
+                    "Key": "Environment",
+                    "Value": "prod"
+                },
+                {
+                    "Key": "Owner",
+                    "Value": "cypher682"
+                },
+                {
+                    "Key": "Project",
+                    "Value": "ecs-production-platform"
+                },
+                {
+                    "Key": "Name",
+                    "Value": "ecs-prod-vpc"
+                }
+            ],
+            "BlockPublicAccessStates": {
+                "InternetGatewayBlockMode": "off"
+            },
+            "VpcId": "vpc-0d2a268b450bd99b0",
+            "State": "available",
+            "CidrBlock": "10.0.0.0/16",
+            "DhcpOptionsId": "dopt-02459f1c599d5f454"
+        }
+    ]
+}

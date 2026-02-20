@@ -1,0 +1,66 @@
+{
+    "RouteTables": [
+        {
+            "Associations": [
+                {
+                    "Main": false,
+                    "RouteTableAssociationId": "rtbassoc-02a9e18d9df917a82",
+                    "RouteTableId": "rtb-036b8fff944983ea3",
+                    "SubnetId": "subnet-0cb9b9135533a98e8",
+                    "AssociationState": {
+                        "State": "associated"
+                    }
+                },
+                {
+                    "Main": false,
+                    "RouteTableAssociationId": "rtbassoc-013397fdeea2c782d",
+                    "RouteTableId": "rtb-036b8fff944983ea3",
+                    "SubnetId": "subnet-0f03d9302f0d6471e",
+                    "AssociationState": {
+                        "State": "associated"
+                    }
+                }
+            ],
+            "PropagatingVgws": [],
+            "RouteTableId": "rtb-036b8fff944983ea3",
+            "Routes": [
+                {
+                    "DestinationCidrBlock": "10.0.0.0/16",
+                    "GatewayId": "local",
+                    "Origin": "CreateRouteTable",
+                    "State": "active"
+                },
+                {
+                    "DestinationCidrBlock": "0.0.0.0/0",
+                    "GatewayId": "igw-0418a46a2cd409aae",
+                    "Origin": "CreateRoute",
+                    "State": "active"
+                }
+            ],
+            "Tags": [
+                {
+                    "Key": "Environment",
+                    "Value": "prod"
+                },
+                {
+                    "Key": "Project",
+                    "Value": "ecs-production-platform"
+                },
+                {
+                    "Key": "Owner",
+                    "Value": "cypher682"
+                },
+                {
+                    "Key": "Name",
+                    "Value": "ecs-prod--public-rt"
+                },
+                {
+                    "Key": "ManagedBy",
+                    "Value": "terraform"
+                }
+            ],
+            "VpcId": "vpc-0d2a268b450bd99b0",
+            "OwnerId": "758620460011"
+        }
+    ]
+}

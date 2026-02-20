@@ -1,0 +1,19 @@
+{
+    "clusters": [
+        {
+            "clusterArn": "arn:aws:ecs:us-east-1:758620460011:cluster/ecs-prod-cluster",
+            "clusterName": "ecs-prod-cluster",
+            "status": "ACTIVE",
+            "registeredContainerInstancesCount": 0,
+            "runningTasksCount": 3,
+            "pendingTasksCount": 0,
+            "activeServicesCount": 2,
+            "statistics": [],
+            "tags": [],
+            "settings": [],
+            "capacityProviders": [],
+            "defaultCapacityProviderStrategy": []
+        }
+    ],
+    "failures": []
+}
