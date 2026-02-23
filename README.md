@@ -150,23 +150,8 @@ Deploy green:  Green TG weight=100, Blue TG weight=0  ← instant switch (<1s)
 Rollback:      Blue TG weight=100, Green TG weight=0  ← same command, reversed
 ```
 
-### Live Evidence
+📸 [View live deployment screenshots →](docs/evidence/screenshots/)
 
-ALB listener showing green at 100% after traffic switch:
-
-![ALB Listener — Green 100%](docs/evidence/screenshots/10-listener-green-100.png.png)
-
-Target group health — both targets healthy:
-
-![Target Group Health](docs/evidence/screenshots/11-target-groups-health.png.png)
-
-ECS Cluster with both services running:
-
-![ECS Cluster](docs/evidence/screenshots/05-ecs-cluster.png.png)
-
-Running tasks across availability zones:
-
-![Running Tasks](docs/evidence/screenshots/07-running-tasks.png.png)
 
 ### Switch Traffic to Green
 
@@ -186,25 +171,12 @@ Rollback is the same command with weights reversed. See [rollback runbook](docs/
 
 ---
 
-## Infrastructure Evidence
+## Evidence
 
-VPC and networking:
+The full deployment was captured before teardown:
 
-![VPC Overview](docs/evidence/screenshots/01-vpc-overview.png.png)
-
-![Subnets](docs/evidence/screenshots/02-subnets.png.png)
-
-![Security Groups](docs/evidence/screenshots/04-security-groups.png.png)
-
-RDS instance in private subnet:
-
-![RDS Instance](docs/evidence/screenshots/13-rds-instance.png.png)
-
-CloudWatch logs from the running application:
-
-![CloudWatch Logs](docs/evidence/screenshots/14-cloudwatch-logs.png.png)
-
-All JSON evidence is committed to [`docs/evidence/`](docs/evidence/): VPC state, IAM roles, ECS service configs, ALB listener rules, target group health, live API responses, and Terraform outputs.
+- 📸 [AWS Console screenshots](docs/evidence/screenshots/) — VPC, subnets, security groups, ECS cluster, ALB listener weights, target group health, RDS, CloudWatch logs
+- 📄 [JSON captures](docs/evidence/) — 24 files: VPC state, IAM roles, ECS services, ALB config, target group health, live API responses, Terraform outputs
 
 ---
 
