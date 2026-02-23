@@ -4,6 +4,8 @@
 
 Sprint-deployed portfolio project demonstrating real-world cloud engineering: zero-downtime deployments, network isolation, secrets management, and cost-controlled infrastructure. Total AWS cost: **~$0.50** for a 4-hour live validation window.
 
+![Architecture Diagram](docs/assets/architecture-diagram.png)
+
 ---
 
 ## Quick Navigation

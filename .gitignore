@@ -69,15 +69,19 @@ build/
 htmlcov/
 
 # =============================================================
-# Evidence — Screenshots & large binary files
-# (Evidence JSON is committed; images stored separately)
+# Images — ignore by default, allow specific committed folders
 # =============================================================
-docs/evidence/screenshots/
 *.png
 *.jpg
 *.jpeg
 *.gif
 *.mp4
+
+# Exceptions — these image folders ARE committed intentionally
+!docs/assets/
+!docs/assets/**
+!docs/evidence/screenshots/
+!docs/evidence/screenshots/**
 
 # =============================================================
 # Personal notes & learning material (not for repo)
