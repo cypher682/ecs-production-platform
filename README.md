@@ -26,8 +26,6 @@ Sprint-deployed portfolio project demonstrating real-world cloud engineering: ze
 
 ## Architecture
 
-![ECS Production Platform Architecture](docs/evidence/screenshots/09-alb-overview.png.png)
-
 ```
 Internet
     │
