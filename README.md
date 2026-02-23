@@ -2,11 +2,29 @@
 
 > **A production-grade container platform built on AWS ECS Fargate with blue-green deployments, RDS PostgreSQL, and full infrastructure-as-code via Terraform.**
 
-This is a sprint-deployed portfolio project demonstrating real-world cloud engineering patterns: zero-downtime deployments, network isolation, secrets management, and cost-controlled infrastructure. Total AWS cost: **~$0.50** for a 4-hour live validation window.
+Sprint-deployed portfolio project demonstrating real-world cloud engineering: zero-downtime deployments, network isolation, secrets management, and cost-controlled infrastructure. Total AWS cost: **~$0.50** for a 4-hour live validation window.
+
+---
+
+## Quick Navigation
+
+| Section | Link |
+|---|---|
+| Architecture | [↓ below](#architecture) |
+| Deployment Guide | [docs/runbooks/00-complete-deployment-guide.md](docs/runbooks/00-complete-deployment-guide.md) |
+| Blue-Green Runbook | [docs/runbooks/rollback-procedure.md](docs/runbooks/rollback-procedure.md) |
+| Lessons Learned | [docs/02_LESSONS_LEARNED.md](docs/02_LESSONS_LEARNED.md) |
+| Cost Analysis | [docs/03_COST_ANALYSIS.md](docs/03_COST_ANALYSIS.md) |
+| Security Design | [docs/04_SECURITY.md](docs/04_SECURITY.md) |
+| CI/CD Design | [docs/05_CICD_DESIGN.md](docs/05_CICD_DESIGN.md) |
+| Live Evidence | [docs/evidence/](docs/evidence/) |
+| Dev.to Article | *(link after publishing)* |
 
 ---
 
 ## Architecture
+
+![ECS Production Platform Architecture](docs/evidence/screenshots/09-alb-overview.png.png)
 
 ```
 Internet
@@ -69,7 +87,7 @@ DB credentials stored in SSM Parameter Store
 
 ```
 ecs-production-platform/
-├── README.md                          ← You are here
+├── README.md
 ├── app/
 │   ├── Dockerfile                     ← Multi-stage build
 │   ├── requirements.txt
@@ -88,29 +106,30 @@ ecs-production-platform/
 │   │   ├── alb/                       ← ALB, listeners, blue/green target groups
 │   │   ├── ecs/                       ← Cluster, task definitions, services
 │   │   ├── rds/                       ← PostgreSQL instance, subnet group
-│   │   └── cicd/                      ← OIDC provider + GitHub Actions IAM role (reference)
+│   │   └── cicd/                      ← OIDC provider + GitHub Actions IAM role
 │   └── environments/
 │       └── prod/
 │           ├── main.tf                ← Module composition
-│           ├── variable.tf            ← Input variables
-│           ├── outputs.tf             ← Resource IDs, ARNs, endpoints
+│           ├── variable.tf
+│           ├── outputs.tf
 │           ├── backend.tf             ← S3 + DynamoDB remote state
-│           └── versions.tf            ← Provider pins
+│           └── versions.tf
 ├── docs/
-│   ├── ARCHITECTURE.md               ← Design decisions and trade-offs
+│   ├── ARCHITECTURE.md
 │   ├── 01_IMPLEMENTATION.md          ← Phase-by-phase build log
 │   ├── 02_LESSONS_LEARNED.md         ← Issues encountered and fixes
-│   ├── 03_COST_ANALYSIS.md           ← AWS cost breakdown
+│   ├── 03_COST_ANALYSIS.md
 │   ├── 04_SECURITY.md                ← IAM, network, secrets design
-│   ├── 05_CICD_DESIGN.md             ← Pipeline design, OIDC auth, setup steps
-│   ├── evidence/                     ← JSON captures from live deployment
+│   ├── 05_CICD_DESIGN.md             ← Pipeline design and OIDC setup
+│   ├── evidence/                     ← Live deployment JSON captures + screenshots
 │   └── runbooks/
-│       ├── deployment-failure.md     ← Incident response
-│       ├── database-connection.md    ← DB connectivity troubleshooting
-│       └── rollback-procedure.md     ← Blue-green rollback steps
+│       ├── 00-complete-deployment-guide.md  ← Start here to replicate
+│       ├── rollback-procedure.md
+│       ├── deployment-failure.md
+│       └── database-connection.md
 └── scripts/
     ├── capture-evidence.sh           ← Infrastructure state snapshot
-    ├── test-blue-green.sh            ← Full blue-green switch + evidence
+    ├── test-blue-green.sh            ← Full blue-green switch + verification
     ├── test-deployment.sh            ← Endpoint smoke tests
     └── verify-cleanup.sh             ← Post-destroy resource check
 ```
@@ -119,18 +138,39 @@ ecs-production-platform/
 
 ## Blue-Green Deployment
 
-This platform implements zero-downtime blue-green deployments using **ALB weighted target groups** — no DNS TTL delays, no ECS deployment controllers, just an instant listener update.
+This platform implements zero-downtime blue-green deployments using **ALB weighted target groups**.
 
 ### How It Works
 
 ```
-Normal state:    Blue TG weight=100, Green TG weight=0
-Deploy green:    Green TG weight=100, Blue TG weight=0   ← instant switch
-Rollback:        Blue TG weight=100, Green TG weight=0   ← instant rollback
+Normal state:  Blue TG weight=100, Green TG weight=0
+Deploy green:  Green TG weight=100, Blue TG weight=0  ← instant switch (<1s)
+Rollback:      Blue TG weight=100, Green TG weight=0  ← same command, reversed
 ```
 
+### Live Evidence
+
+ALB listener showing green at 100% after traffic switch:
+
+![ALB Listener — Green 100%](docs/evidence/screenshots/10-listener-green-100.png.png)
+
+Target group health — both targets healthy:
+
+![Target Group Health](docs/evidence/screenshots/11-target-groups-health.png.png)
+
+ECS Cluster with both services running:
+
+![ECS Cluster](docs/evidence/screenshots/05-ecs-cluster.png.png)
+
+Running tasks across availability zones:
+
+![Running Tasks](docs/evidence/screenshots/07-running-tasks.png.png)
+
 ### Switch Traffic to Green
+
 ```bash
+export MSYS_NO_PATHCONV=1   # Windows Git Bash only
+
 aws elbv2 modify-listener \
   --listener-arn <HTTPS_LISTENER_ARN> \
   --default-actions '[{"Type":"forward","ForwardConfig":{"TargetGroups":[
@@ -140,155 +180,104 @@ aws elbv2 modify-listener \
   --region us-east-1
 ```
 
-### Rollback (instant)
-```bash
-# Same command, weights reversed
-```
-
-See [`docs/runbooks/rollback-procedure.md`](docs/runbooks/rollback-procedure.md) for the full runbook.
+Rollback is the same command with weights reversed. See [rollback runbook](docs/runbooks/rollback-procedure.md).
 
 ---
 
-## Deploying
+## Infrastructure Evidence
 
-> ⚠️ This is a **sprint-deploy** project. Deploy, validate, destroy. The infrastructure is not meant to run continuously due to ALB costs ($0.0225/hr).
+VPC and networking:
 
-### Prerequisites
+![VPC Overview](docs/evidence/screenshots/01-vpc-overview.png.png)
 
-- AWS CLI configured (`aws sts get-caller-identity`)
-- Terraform >= 1.5
-- Docker
-- S3 backend: `cipherpol-terraform-state-758620460011`
-- SSM parameter: `/ecs-prod/db/password` (SecureString)
+![Subnets](docs/evidence/screenshots/02-subnets.png.png)
 
-### Deploy
+![Security Groups](docs/evidence/screenshots/04-security-groups.png.png)
+
+RDS instance in private subnet:
+
+![RDS Instance](docs/evidence/screenshots/13-rds-instance.png.png)
+
+CloudWatch logs from the running application:
+
+![CloudWatch Logs](docs/evidence/screenshots/14-cloudwatch-logs.png.png)
+
+All JSON evidence is committed to [`docs/evidence/`](docs/evidence/): VPC state, IAM roles, ECS service configs, ALB listener rules, target group health, live API responses, and Terraform outputs.
+
+---
+
+## Deploying This Project
+
+> See the complete step-by-step guide: **[docs/runbooks/00-complete-deployment-guide.md](docs/runbooks/00-complete-deployment-guide.md)**
+
+Quick summary:
 
 ```bash
+# 1. Bootstrap (one-time): S3 bucket, DynamoDB table, ECR repo, SSM password
+
+# 2. Build and push the app image
+cd app && docker build -t $ECR_REPO:v1.0.0 . && docker push $ECR_REPO:v1.0.0
+
+# 3. Deploy infrastructure
 cd terraform/environments/prod
+export TF_VAR_db_password="your-password"
+terraform init && terraform apply
 
-# Set DB password from SSM
-export MSYS_NO_PATHCONV=1   # Git Bash on Windows only
-export TF_VAR_db_password=$(aws ssm get-parameter \
-  --name /ecs-prod/db/password --with-decryption \
-  --query Parameter.Value --output text)
+# 4. Verify
+curl https://app.cipherpol.xyz/health
+# {"status": "healthy", "version": "1.0.0", "deployment": "blue"}
 
-terraform init
-terraform plan -out=deploy.tfplan
-terraform apply "deploy.tfplan"
-```
-
-### Build & Push App Image
-
-```bash
-cd app
-
-aws ecr get-login-password --region us-east-1 | \
-  docker login --username AWS --password-stdin \
-  758620460011.dkr.ecr.us-east-1.amazonaws.com
-
-docker build -t 758620460011.dkr.ecr.us-east-1.amazonaws.com/ecs-prod/flask-app:latest .
-docker push 758620460011.dkr.ecr.us-east-1.amazonaws.com/ecs-prod/flask-app:latest
-
-aws ecs update-service \
-  --cluster ecs-prod-cluster \
-  --service ecs-prod-service \
-  --force-new-deployment \
-  --region us-east-1
-```
-
-### Destroy (Clean Shutdown)
-
-```bash
-# Scale services to 0 first (avoids target group drain timeout)
-aws ecs update-service --cluster ecs-prod-cluster --service ecs-prod-service --desired-count 0 --region us-east-1
-aws ecs update-service --cluster ecs-prod-cluster --service ecs-prod-service-green --desired-count 0 --region us-east-1
-
-sleep 60
-
-cd terraform/environments/prod
-terraform destroy
-
-# Verify nothing remains
-bash scripts/verify-cleanup.sh
+# 5. Destroy when done
+aws ecs update-service --cluster ecs-prod-cluster --service ecs-prod-service --desired-count 0
+aws ecs update-service --cluster ecs-prod-cluster --service ecs-prod-service-green --desired-count 0
+sleep 60 && terraform destroy
 ```
 
 ---
 
 ## Application API
 
-The Flask app exposes four endpoints:
-
 | Endpoint | Method | Description |
 |---|---|---|
-| `GET /` | GET | Service info (version, deployment slot) |
+| `GET /` | GET | Service info — version, deployment slot |
 | `GET /health` | GET | ALB health check target |
-| `GET /db-check` | GET | PostgreSQL connectivity check |
-| `GET /items` | GET | List all items |
+| `GET /db-check` | GET | PostgreSQL connectivity test |
+| `GET /items` | GET | List all items in DB |
 | `POST /items` | POST | Create item `{"name": "..."}` |
 
 ---
 
-## Key Design Decisions
+## CI/CD Pipeline
 
-### Public Subnets for ECS Tasks (vs. NAT Gateway)
-ECS tasks run in public subnets with internet access. In production I'd use private subnets + NAT Gateway — but NAT costs $33/month, which exceeds the budget of a sprint deploy. Security groups enforce that only the ALB can reach container port 8000. RDS stays in private subnets in all cases.
-
-### Single-AZ RDS
-Free tier `db.t3.micro` with `Multi-AZ=false`. For production: `Multi-AZ=true` for automatic failover.
-
-### Weighted Listener vs. CodeDeploy Blue-Green
-ALB weighted target groups give instant, scriptable traffic control without CodeDeploy complexity. Trade-off: no automatic health-check-triggered rollback. That's mitigated by the ALB health check + ECS service replacement loop.
-
----
-
-## CI/CD Pipeline (Designed, Not Live Tested)
-
-Two GitHub Actions workflows are included in `.github/workflows/`:
+Two GitHub Actions workflows are in `.github/workflows/`:
 
 | Workflow | Trigger | What It Does |
 |---|---|---|
-| `deploy.yml` | Push to `main` (app code changes) | Build image, push to ECR, deploy to green ECS service |
-| `rollback.yml` | Manual (`workflow_dispatch`) | Switch ALB listener to blue, scale green to 0 |
+| `deploy.yml` | Push to `main` | Build image → push to ECR → deploy to green ECS service |
+| `rollback.yml` | Manual trigger | Switch ALB to blue, scale green to 0 |
 
-Authentication uses **OIDC** (OpenID Connect) — GitHub requests short-lived AWS tokens per workflow run. No long-lived access keys stored in GitHub.
-
-The OIDC provider and IAM deployment role are defined in `terraform/modules/cicd/` (reference only, not applied). To enable the workflows, create the IAM role and uncomment the `configure-aws-credentials` step in each workflow file.
-
-See [`docs/05_CICD_DESIGN.md`](docs/05_CICD_DESIGN.md) for full setup instructions.
+Authentication uses **OIDC** — no long-lived AWS credentials stored in GitHub. See [docs/05_CICD_DESIGN.md](docs/05_CICD_DESIGN.md) for setup.
 
 ---
 
-## Evidence
+## Cost
 
-Live deployment evidence is captured in `docs/evidence/`:
-- VPC, subnet, security group JSON
-- ECS cluster, service, task definition snapshots
-- ALB listener configuration (weighted forward)
-- Target group health states
-- Live API responses (`/health`, `/items`, `/db-check`)
-- CloudWatch log sample
-- Blue-green switch test results (11 files in `docs/evidence/phase5/`)
-
----
-
-## Cost Analysis
-
-See [`docs/03_COST_ANALYSIS.md`](docs/03_COST_ANALYSIS.md) for full breakdown.
-
-**Summary for 4-hour validation window:**
-
-| Service | Rate | 4h Cost |
+| Service | Rate | 24-hour cost |
 |---|---|---|
-| ALB | $0.0225/hr | $0.09 |
-| ECS Fargate | ~$0.01/hr (0.25 vCPU, 0.5GB) | $0.04 |
-| RDS db.t3.micro | Free tier | $0.00 |
-| Route 53 | Prorated | ~$0.02 |
-| Data transfer | Minimal | ~$0.01 |
-| **Total** | | **~$0.16** |
+| ALB | $0.0225/hr | $0.54 |
+| ECS Fargate (2 tasks) | $0.025/hr | $0.59 |
+| RDS db.t3.micro | $0.017/hr | $0.41 |
+| RDS Storage (20 GB) | prorated | $0.08 |
+| Route 53 | prorated | $0.02 |
+| **Total** | | **~$1.64/day** |
+
+**4-hour validation session: ~$0.50**
+
+No NAT Gateway = single biggest cost saving ($33/month avoided). See [docs/03_COST_ANALYSIS.md](docs/03_COST_ANALYSIS.md).
 
 ---
 
 ## Author
 
 **Suleiman** — Cloud Infrastructure Engineer  
-[cipherpol.xyz](https://cipherpol.xyz)
+[github.com/cypher682](https://github.com/cypher682)
