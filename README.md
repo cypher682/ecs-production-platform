@@ -20,7 +20,7 @@ Sprint-deployed portfolio project demonstrating real-world cloud engineering: ze
 | Security Design | [docs/04_SECURITY.md](docs/04_SECURITY.md) |
 | CI/CD Design | [docs/05_CICD_DESIGN.md](docs/05_CICD_DESIGN.md) |
 | Live Evidence | [docs/evidence/](docs/evidence/) |
-| Dev.to Article | *(link after publishing)* |
+| Dev.to Article | [dev.to](https://dev.to/cypher682/designing-a-production-grade-blue-green-ecs-platform-on-aws-with-terraform-2n5h) |
 
 ---
 
